@@ -19,8 +19,8 @@ export default {
 		Footer
 	}
 }
-</script>
 
+</script>
 <style>
 	@import "./assets/css/base.css";
 	@import "./assets/css/grid.css";

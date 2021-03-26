@@ -80,10 +80,10 @@
 						</a>
 					</li>
 					<li class="header__navbar-item header__navbar-item--strong header__navbar-item--separate">
-						<a class="header__navbar-item-click" href="#form__container">Đăng ký</a>
+						<span class="header__navbar-item-click" v-on:click="openRegister">Đăng ký</span>
 					</li>
 					<li class="header__navbar-item header__navbar-item--strong">
-						<a class="header__navbar-item-click" href="#login">Đăng nhập</a>
+						<a class="header__navbar-item-click" v-on:click="openLogin">Đăng nhập</a>
 					</li>
 					<!-- <li class="header__navbar-item header__navbar-user">
 						<img src="https://graph.facebook.com/2700722880185093/picture?width=400&height=400" alt="" class="header__navbar-user-img">
@@ -251,17 +251,164 @@
 				<a href="" class="header__sort-link">Giá</a>
 			</li>
 		</ul>
+
+		<!-- Modal -->
+        <div class="modal__register" id="form__container" v-if="state_register">
+            <a href="#" class="modal__overlay"></a>
+            <div class="modal__body">
+                <!-- Register form -->
+                <div class="auth-form">
+                    <div class="auth-form__container">
+                        <div class="auth-form__header">
+                            <h3 class="auth-form__heading">Đăng ký</h3>
+                            <span class="auth-form__switch-btn">Đăng nhập</span>
+                        </div>
+
+                        <div class="auth-form__form">
+                            <div class="auth-form__group">
+                                <input type="text" v-model="email" name="email" class="auth-form__input" placeholder="Email của bạn">
+                            </div>
+                            <div class="auth-form__group">
+                                <input type="password" v-model="password" name="password" class="auth-form__input" placeholder="Mật khẩu của bạn">
+                            </div>
+                            <div class="auth-form__group">
+                                <input type="password" v-model="password_confirm" name="password_confirm" class="auth-form__input" placeholder="Nhập lại mật khẩu">
+                            </div>
+                        </div>
+                        <div class="auth-form__aside">
+                            <p class="auth-form__policy-text">
+                                Bằng việc đăng kí, bạn đã đồng ý với F8-Shop về
+                                <a href="" class="auth-form__text-link">Điều khoản dịch vụ</a> &
+                                <a href="" class="auth-form__text-link">Chính sách bảo mật</a>
+                            </p>
+                        </div>
+                        <div class="auth-form__controls">
+                            <button class="btn btn--normal auth-form__controls-back">TRỞ LẠI</button>
+                            <button class="btn btn--primary" v-on:click="register">ĐĂNG KÝ</button>
+                        </div>
+                    </div>
+                    <div class="auth-form__socials">
+                        <a href="" class="auth-form__socials--facebook btn btn--size-s btn--with-icon">
+                            <i class="auth-form__socials-icon fab fa-facebook-square"></i>
+                            <span class="auth-form__socials-title">Kết nối với Facebook</span>
+                        </a>
+                        <a href="" class="auth-form__socials--google btn btn--size-s btn--with-icon">
+                            <i class="auth-form__socials-icon fab fa-google"></i>
+                            <span class="auth-form__socials-title">Kết nối với Google</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal__login" id="login" v-if="state_login">
+            <a href="#" class="modal__overlay"></a>
+            <div class="modal__body">
+                <!-- Login form -->
+                <div class="auth-form">
+                    <div class="auth-form__container">
+                        <div class="auth-form__header">
+                            <h3 class="auth-form__heading">Đăng nhập</h3>
+                            <span class="auth-form__switch-btn">Đăng ký</span>
+                        </div>
+
+                        <div class="auth-form__form">
+                            <div class="auth-form__group">
+                                <input type="text" v-model="email" class="auth-form__input" placeholder="Email của bạn">
+                            </div>
+                            <div class="auth-form__group">
+                                <input type="password" v-model="password" class="auth-form__input" placeholder="Mật khẩu của bạn">
+                            </div>
+                        </div>
+                        <div class="auth-form__aside">
+                            <div class="auth-form__help">
+                                <a href="" class="auth-form__help-link auth-form__help-forgot">Quên mật khẩu</a>
+                                <span class="auth-form__help-separate"></span>
+                                <a href="" class="auth-form__help-link">Cần trợ giúp?</a>
+                            </div>
+                        </div>
+                        <div class="auth-form__controls">
+                            <button class="btn btn--normal auth-form__controls-back">TRỞ LẠI</button>
+                            <button class="btn btn--primary" v-on:click="login">ĐĂNG NHẬP</button>
+                        </div>
+                    </div>
+                    <div class="auth-form__socials">
+                        <a href="" class="auth-form__socials--facebook btn btn--size-s btn--with-icon">
+                            <i class="auth-form__socials-icon fab fa-facebook-square"></i>
+                            <span class="auth-form__socials-title">Kết nối với Facebook</span>
+                        </a>
+                        <a href="" class="auth-form__socials--google btn btn--size-s btn--with-icon">
+                            <i class="auth-form__socials-icon fab fa-google"></i>
+                            <span class="auth-form__socials-title">Kết nối với Google</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
 	</header>
 </template>
 <script>
-
+import AuthenticationService from '@/services/AuthenticationService';
+import $ from 'jquery'
 export default {
     name: 'Header',
     data() {
         return {
-
+			email: '',
+            password: '',
+            password_confirm: '',
+			state_register: false,
+            state_login: false,
         }
-    }
+    },
+	methods: {
+		openRegister() {
+            this.state_register = !this.state_register
+        },
+        openLogin() {
+            this.state_login = !this.state_login
+        },
+		reloadForm() {
+            this.email = '';
+            this.password = '';
+            this.password_confirm = ''
+        },
+        async register () {
+            const response = await AuthenticationService.register({
+                email: this.email,
+                password: this.password,
+                password_confirm: this.password_confirm
+            })
+            this.$store.dispatch('setToken', response.data.token)
+            this.$store.dispatch('setUser', response.data.user)
+            if (response.data.status == 200) {
+                this.$toastr.s(response.data.message)
+                $('#form__container').css({
+                    display: 'none'
+                })
+            } else {
+                this.$toastr.e(response.data.message)
+            }
+            this.reloadForm()
+        },
+        async login () {
+            const response = await AuthenticationService.login({
+                email: this.email,
+                password: this.password,
+            })
+            this.$store.dispatch('setToken', response.data.token)
+            this.$store.dispatch('setUser', response.data.user)
+            if (response.data.status == 200) {
+                this.$toastr.s(response.data.message)
+                $('#login').css({
+                    display: 'none'
+                })
+            } else {
+                this.$toastr.e(response.data.message)
+            }
+            this.reloadForm()
+        }
+	}
 }
 </script>
 <style scoped>

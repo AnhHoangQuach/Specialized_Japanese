@@ -85,126 +85,22 @@
         </div>
         <div class="footer__bottom">
             <div class="grid wide">
-                <p class="footer__text">© 2021 - Bản quyền thuộc về công ty Hoàng Anh và Đình Tuấn.</p>
-            </div>
-        </div>
-
-        <!-- Modal -->
-        <div class="modal__register" id="form__container">
-            <a href="#" class="modal__overlay"></a>
-            <div class="modal__body">
-                <!-- Register form -->
-                <div class="auth-form">
-                    <div class="auth-form__container">
-                        <div class="auth-form__header">
-                            <h3 class="auth-form__heading">Đăng ký</h3>
-                            <span class="auth-form__switch-btn">Đăng nhập</span>
-                        </div>
-
-                        <div class="auth-form__form">
-                            <div class="auth-form__group">
-                                <input type="text" v-model="email" name="email" class="auth-form__input" placeholder="Email của bạn">
-                            </div>
-                            <div class="auth-form__group">
-                                <input type="password" v-model="password" name="password" class="auth-form__input" placeholder="Mật khẩu của bạn">
-                            </div>
-                            <div class="auth-form__group">
-                                <input type="password" v-model="confirm_password" name="confirm_password" class="auth-form__input" placeholder="Nhập lại mật khẩu">
-                            </div>
-                        </div>
-                        <div class="auth-form__aside">
-                            <p class="auth-form__policy-text">
-                                Bằng việc đăng kí, bạn đã đồng ý với F8-Shop về
-                                <a href="" class="auth-form__text-link">Điều khoản dịch vụ</a> &
-                                <a href="" class="auth-form__text-link">Chính sách bảo mật</a>
-                            </p>
-                        </div>
-                        <div class="auth-form__controls">
-                            <button class="btn btn--normal auth-form__controls-back">TRỞ LẠI</button>
-                            <button class="btn btn--primary" v-on:click="register">ĐĂNG KÝ</button>
-                        </div>
-                    </div>
-                    <div class="auth-form__socials">
-                        <a href="" class="auth-form__socials--facebook btn btn--size-s btn--with-icon">
-                            <i class="auth-form__socials-icon fab fa-facebook-square"></i>
-                            <span class="auth-form__socials-title">Kết nối với Facebook</span>
-                        </a>
-                        <a href="" class="auth-form__socials--google btn btn--size-s btn--with-icon">
-                            <i class="auth-form__socials-icon fab fa-google"></i>
-                            <span class="auth-form__socials-title">Kết nối với Google</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal__login" id="login">
-            <a href="#" class="modal__overlay"></a>
-            <div class="modal__body">
-                <!-- Login form -->
-                <div class="auth-form">
-                    <div class="auth-form__container">
-                        <div class="auth-form__header">
-                            <h3 class="auth-form__heading">Đăng nhập</h3>
-                            <span class="auth-form__switch-btn">Đăng ký</span>
-                        </div>
-
-                        <div class="auth-form__form">
-                            <div class="auth-form__group">
-                                <input type="text" name="email" class="auth-form__input" placeholder="Email của bạn">
-                            </div>
-                            <div class="auth-form__group">
-                                <input type="password" name="password" class="auth-form__input" placeholder="Mật khẩu của bạn">
-                            </div>
-                        </div>
-                        <div class="auth-form__aside">
-                            <div class="auth-form__help">
-                                <a href="" class="auth-form__help-link auth-form__help-forgot">Quên mật khẩu</a>
-                                <span class="auth-form__help-separate"></span>
-                                <a href="" class="auth-form__help-link">Cần trợ giúp?</a>
-                            </div>
-                        </div>
-                        <div class="auth-form__controls">
-                            <button class="btn btn--normal auth-form__controls-back">TRỞ LẠI</button>
-                            <button class="btn btn--primary">ĐĂNG NHẬP</button>
-                        </div>
-                    </div>
-                    <div class="auth-form__socials">
-                        <a href="" class="auth-form__socials--facebook btn btn--size-s btn--with-icon">
-                            <i class="auth-form__socials-icon fab fa-facebook-square"></i>
-                            <span class="auth-form__socials-title">Kết nối với Facebook</span>
-                        </a>
-                        <a href="" class="auth-form__socials--google btn btn--size-s btn--with-icon">
-                            <i class="auth-form__socials-icon fab fa-google"></i>
-                            <span class="auth-form__socials-title">Kết nối với Google</span>
-                        </a>
-                    </div>
-                </div>
+                <p class="footer__text">© 2021 - Bản quyền thuộc về công ty Hoàng Anh và Đình Tuấn, Đức Mạnh.</p>
             </div>
         </div>
     </footer>
 </template>
 
 <script>
-import AuthenticationService from '@/services/AuthenticationService';
 export default {
     name: 'Footer',
     data() {
         return {
-            email: '',
-            password: '',
-            confirm_password: '',
+            
         }
     },
     methods: {
-        async register () {
-            const response = await AuthenticationService.register({
-                email: this.email,
-                password: this.password,
-                confirm_password: this.confirm_password
-            })
-            console.log(response)
-        }
+
     }
 }
 </script>
