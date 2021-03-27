@@ -78,9 +78,8 @@ html {
     left: 0;
     display: flex;
     animation: fadeIn linear 0.5s;
-    visibility: hidden;
-    opacity: 0;
     transition: opacity linear 0.4s;
+    z-index: 6;
 }
 
 .modal__login {
@@ -91,9 +90,8 @@ html {
     left: 0;
     display: flex;
     animation: fadeIn linear 0.5s;
-    visibility: hidden;
-    opacity: 0;
     transition: opacity linear 0.4s;
+    z-index: 6;
 }
 
 .modal__overlay {
@@ -238,4 +236,8 @@ html {
     text-align: center;
     line-height: var(--height);
     border-radius: 2px;
+}
+
+.d-flex {
+    display: flex;
 }

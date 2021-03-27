@@ -20,10 +20,10 @@
 					</li>
 					<li class="header__navbar-item">
 						<span class="header__navbar-item-title--no-pointer">Kết nối</span>
-						<a href="" class="header__navbar-icon-link">
+						<a href="https://www.facebook.com/profile.php?id=100007422227963" class="header__navbar-icon-link" target="_blank">
 							<fa-icon :icon="['fab', 'facebook']" class="header__navbar-icon"/>
 						</a>
-						<a href="" class="header__navbar-icon-link">
+						<a href="https://www.instagram.com/anhhoang362k/?fbclid=IwAR3dgiZ6tBpPhWm5C958Ei-r919lTF7HQy1iFV20DHBHw3XgDmUSP84pTVU" target="_blank" class="header__navbar-icon-link">
 							<fa-icon :icon="['fab', 'instagram']" class="header__navbar-icon"/>
 						</a>
 					</li>
@@ -79,15 +79,9 @@
 							Trợ giúp
 						</a>
 					</li>
-					<li class="header__navbar-item header__navbar-item--strong header__navbar-item--separate">
-						<span class="header__navbar-item-click" v-on:click="openRegister">Đăng ký</span>
-					</li>
-					<li class="header__navbar-item header__navbar-item--strong">
-						<a class="header__navbar-item-click" v-on:click="openLogin">Đăng nhập</a>
-					</li>
-					<!-- <li class="header__navbar-item header__navbar-user">
+					<li class="header__navbar-item header__navbar-user" v-if="$store.state.user">
 						<img src="https://graph.facebook.com/2700722880185093/picture?width=400&height=400" alt="" class="header__navbar-user-img">
-						<span class="header__navbar-user-name">Hoàng Anh</span>
+						<span class="header__navbar-user-name">{{ $store.state.user.email }}</span>
 
 						<ul class="header__navbar-user-menu">
 							<li class="header__navbar-user-item">
@@ -100,10 +94,18 @@
 								<a href="">Đơn mua</a>
 							</li>
 							<li class="header__navbar-user-item header__navbar-user-item--separate">
-								<a href="">Đăng xuất</a>
+								<a href="/" @click="logout">Đăng xuất</a>
 							</li>
 						</ul>
-					</li> -->
+					</li>
+					<div class="d-flex" v-else>
+						<li class="header__navbar-item header__navbar-item--strong header__navbar-item--separate">
+							<a class="header__navbar-item-click" @click="openRegister">Đăng ký</a>
+						</li>
+						<li class="header__navbar-item header__navbar-item--strong">
+							<a class="header__navbar-item-click" @click="openLogin">Đăng nhập</a>
+						</li>
+					</div>
 				</ul>
 			</nav>
 			<!-- Header with search -->
@@ -120,8 +122,8 @@
 							<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" class="svg-inline--fa fa-times fa-w-11" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>
 						</label>
 						<ul class="nav__mobile-list">
-							<li class="nav__mobile-link">Đăng ký</li>
-							<li class="nav__mobile-link">Đăng nhập</li>
+							<li class="nav__mobile-link" id="#form__container">Đăng ký</li>
+							<li class="nav__mobile-link" id="#login">Đăng nhập</li>
 						</ul>
 					</nav>
 				</div>
@@ -253,15 +255,15 @@
 		</ul>
 
 		<!-- Modal -->
-        <div class="modal__register" id="form__container" v-if="state_register">
-            <a href="#" class="modal__overlay"></a>
+        <div class="modal__register" v-if="state_register">
+            <a href="#" class="modal__overlay" @click="openPage"></a>
             <div class="modal__body">
                 <!-- Register form -->
                 <div class="auth-form">
                     <div class="auth-form__container">
                         <div class="auth-form__header">
-                            <h3 class="auth-form__heading">Đăng ký</h3>
-                            <span class="auth-form__switch-btn">Đăng nhập</span>
+                            <h3 class="auth-form__heading" @click="openRegister">Đăng ký</h3>
+                            <span class="auth-form__switch-btn" @click="openLogin">Đăng nhập</span>
                         </div>
 
                         <div class="auth-form__form">
@@ -283,7 +285,7 @@
                             </p>
                         </div>
                         <div class="auth-form__controls">
-                            <button class="btn btn--normal auth-form__controls-back">TRỞ LẠI</button>
+                            <button class="btn btn--normal auth-form__controls-back" @click="openPage">TRỞ LẠI</button>
                             <button class="btn btn--primary" v-on:click="register">ĐĂNG KÝ</button>
                         </div>
                     </div>
@@ -301,15 +303,15 @@
             </div>
         </div>
 
-        <div class="modal__login" id="login" v-if="state_login">
-            <a href="#" class="modal__overlay"></a>
+        <div class="modal__login" v-if="state_login">
+            <a href="#" class="modal__overlay" @click="openPage"></a>
             <div class="modal__body">
                 <!-- Login form -->
                 <div class="auth-form">
                     <div class="auth-form__container">
                         <div class="auth-form__header">
-                            <h3 class="auth-form__heading">Đăng nhập</h3>
-                            <span class="auth-form__switch-btn">Đăng ký</span>
+                            <h3 class="auth-form__heading" @click="openLogin">Đăng nhập</h3>
+                            <span class="auth-form__switch-btn" @click="openRegister">Đăng ký</span>
                         </div>
 
                         <div class="auth-form__form">
@@ -328,17 +330,17 @@
                             </div>
                         </div>
                         <div class="auth-form__controls">
-                            <button class="btn btn--normal auth-form__controls-back">TRỞ LẠI</button>
+                            <button class="btn btn--normal auth-form__controls-back" @click="openPage">TRỞ LẠI</button>
                             <button class="btn btn--primary" v-on:click="login">ĐĂNG NHẬP</button>
                         </div>
                     </div>
                     <div class="auth-form__socials">
                         <a href="" class="auth-form__socials--facebook btn btn--size-s btn--with-icon">
-                            <i class="auth-form__socials-icon fab fa-facebook-square"></i>
+                            <fa-icon :icon="['fab', 'facebook']" class="header__navbar-icon"/>
                             <span class="auth-form__socials-title">Kết nối với Facebook</span>
                         </a>
                         <a href="" class="auth-form__socials--google btn btn--size-s btn--with-icon">
-                            <i class="auth-form__socials-icon fab fa-google"></i>
+                            <fa-icon :icon="['fab', 'google']" class="header__navbar-icon"/>
                             <span class="auth-form__socials-title">Kết nối với Google</span>
                         </a>
                     </div>
@@ -349,7 +351,7 @@
 </template>
 <script>
 import AuthenticationService from '@/services/AuthenticationService';
-import $ from 'jquery'
+// import $ from 'jquery'
 export default {
     name: 'Header',
     data() {
@@ -358,16 +360,22 @@ export default {
             password: '',
             password_confirm: '',
 			state_register: false,
-            state_login: false,
+			state_login: false,
         }
     },
 	methods: {
 		openRegister() {
-            this.state_register = !this.state_register
-        },
-        openLogin() {
-            this.state_login = !this.state_login
-        },
+			this.state_register = !this.state_register
+			this.state_login = false
+		},
+		openLogin() {
+			this.state_login = !this.state_login
+			this.state_register = false
+		},
+		openPage() {
+			this.state_login = false
+			this.state_register = false
+		},
 		reloadForm() {
             this.email = '';
             this.password = '';
@@ -383,9 +391,7 @@ export default {
             this.$store.dispatch('setUser', response.data.user)
             if (response.data.status == 200) {
                 this.$toastr.s(response.data.message)
-                $('#form__container').css({
-                    display: 'none'
-                })
+				this.openPage()
             } else {
                 this.$toastr.e(response.data.message)
             }
@@ -396,18 +402,21 @@ export default {
                 email: this.email,
                 password: this.password,
             })
+			console.log(response)
             this.$store.dispatch('setToken', response.data.token)
             this.$store.dispatch('setUser', response.data.user)
             if (response.data.status == 200) {
                 this.$toastr.s(response.data.message)
-                $('#login').css({
-                    display: 'none'
-                })
+                this.openPage()
             } else {
                 this.$toastr.e(response.data.message)
             }
             this.reloadForm()
-        }
+        },
+		logout() {
+			this.$store.dispatch('setToken', null)
+			this.$store.dispatch('setUser', null)
+		}
 	}
 }
 </script>

@@ -1,12 +1,11 @@
 const express = require('express')
-const mongodb = require('mongodb')
+const UserController = require('../../controllers/UserController')
+const {UserValidator} = require('../../validators/validator')
 
 const router = express.Router()
 
-router.post('/register', async (req, res, next) => {
-    res.send({
-        message: `Hello ${req.body.email} register is successful`
-    })
-})
+router.post('/register', UserValidator, UserController.register)
+
+router.post('/login', UserController.login)
 
 module.exports = router;
