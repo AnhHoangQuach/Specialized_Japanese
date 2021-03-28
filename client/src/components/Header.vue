@@ -85,10 +85,7 @@
 
 						<ul class="header__navbar-user-menu">
 							<li class="header__navbar-user-item">
-								<a href="">Tài khoản của tôi</a>
-							</li>
-							<li class="header__navbar-user-item">
-								<a href="">Địa chỉ của tôi</a>
+								<router-link :to="{name: 'UserInfo'}">Tài khoản của tôi</router-link>
 							</li>
 							<li class="header__navbar-user-item">
 								<a href="">Đơn mua</a>

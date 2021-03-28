@@ -23,6 +23,12 @@ html {
     box-sizing: border-box;
 }
 
+.container {
+    margin: auto;
+    width: auto;
+    width: 1200px;
+}
+
 /* Responsive */
 
 .grid__row {
