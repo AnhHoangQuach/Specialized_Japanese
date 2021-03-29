@@ -8,7 +8,7 @@
                     </div>
                 </a>
                 <div class="user-info__sidebar--brief__right">
-                    <div class="user-info__sidebar--brief__username">{{ getRetrieveName($store.state.user.email) }}</div>
+                    <div class="user-info__sidebar--brief__username">{{ $store.state.user.email }}</div>
                     <div>
                         <a href="" class="user-info__sidebar--brief__edit">
                             <fa-icon :icon="['fa', 'edit']" /> Sửa hồ sơ
@@ -65,7 +65,91 @@
                         </div>
                     </div>
                     <div class="my__account--profile">
-
+                        <div class="my__account--profile__left">
+                            <div class="my__account--profile__left--label">
+                                <div class="my__account--profile__left--label__wrapper">
+                                    <div class="my__account--profile__left--name">
+                                         <label for="">Tên đăng nhập</label>
+                                    </div>
+                                    <div class="my__account--profile__left--content">
+                                        <div class="my__account--profile__left--content__container">
+                                            <div class="my__account--profile__left--input__text">
+                                                {{ $store.state.user.email }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="my__account--profile__left--label">
+                                <div class="my__account--profile__left--label__wrapper">
+                                    <div class="my__account--profile__left--name">
+                                         <label for="">Email</label>
+                                    </div>
+                                    <div class="my__account--profile__left--content">
+                                        <div class="my__account--profile__left--content__container">
+                                            <div class="my__account--profile__left--input__text">
+                                                {{ $store.state.user.email }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="my__account--profile__left--label">
+                                <div class="my__account--profile__left--label__wrapper">
+                                    <div class="my__account--profile__left--name">
+                                         <label for="">Số điện thoại</label>
+                                    </div>
+                                    <div class="my__account--profile__left--content">
+                                        <div class="my__account--profile__left--content__container">
+                                            <div class="my__account--profile__left--input__text">
+                                                0904513053
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="my__account--profile__left--label">
+                                <div class="my__account--profile__left--label__wrapper">
+                                    <div class="my__account--profile__left--name">
+                                         <label for="">Giới tính</label>
+                                    </div>
+                                    <div class="my__account--profile__left--content">
+                                        <div class="my__account--profile__left--content__container">
+                                            <div class="my__account--profile__left--input__gender">
+                                                <input type="radio"> <span class="text">Nam</span>
+                                                <input type="radio"> <span class="text">Nữ</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="my__account--profile__left--label">
+                                <div class="my__account--profile__left--label__wrapper">
+                                    <div class="my__account--profile__left--name">
+                                         <label for="">Ngày sinh</label>
+                                    </div>
+                                    <div class="my__account--profile__left--content">
+                                        <div class="my__account--profile__left--content__container">
+                                            <div class="my__account--profile__left--input__date">
+                                                <select class="shopee--dropdown__entry">
+                                                    <option value="">1</option>
+                                                </select>
+                                                <select class="shopee--dropdown__entry">
+                                                    <option value="">1</option>
+                                                </select>
+                                                <select class="shopee--dropdown__entry">
+                                                    <option value="">1</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="my__account--profile__submit">
+                                <button type="button" class="btn btn-solid-primary">Lưu</button>
+                            </div>
+                        </div>
+                        <div class="my__account--profile__right"></div>
                     </div>
                 </div>
             </div>
@@ -79,6 +163,9 @@ export default {
         getRetrieveName(email) {
             return email.substring(0, email.lastIndexOf("@"))
         }
+    },
+    computed: {
+        
     }
 }
 </script>
@@ -87,13 +174,86 @@ export default {
     body {
         background-color: #f5f5f5;  
     }
+    
+    .text {
+        font-size: 1.5rem;
+        margin: 0 1rem;
+    }
+
+    .my__account--profile__left--input__date {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .shopee--dropdown__entry {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        border: 1px solid rgba(0,0,0,.09);
+        border-radius: 2px;
+        height: 4rem;
+        background: #fff;
+        width: 100%;
+        padding: 2rem 4rem;
+        margin-right: 0.6rem;
+    }
+
+    .btn-solid-primary {
+        color: #fff;
+        background: #ee4d2d;
+    }
+
+    .my__account--profile__submit {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-left: 4.5rem;
+    }
+
+    /* My account left */
+    .my__account--profile__left {
+        flex: 1;
+        padding-right: 50px;
+    }
+
+    .my__account--profile__left--label {
+        margin-bottom: 30px;
+    }
+
+    .my__account--profile__left--label__wrapper {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .my__account--profile__left--name {
+        width: 15%;
+        text-align: left;
+        color: rgba(85,85,85,.8);
+        text-transform: capitalize;
+        overflow: hidden;
+        font-size: 1.4rem;
+    }
+
+    .my__account--profile__left--content {
+        width: 80%;
+        box-sizing: border-box;
+        padding-left: 1.5rem;
+    }
+
+    .my__account--profile__left--content__container {
+        display: flex;
+        align-items: center;
+    }
+
     /* User info content */
     .user-info__sidebar__content {
         position: relative;
         box-sizing: border-box;
         margin-left: 1.6875rem;
         min-width: 0;
-        background: #fff;
+        background-color: #fff;
         box-shadow: 0 1px 2px 0 rgb(0 0 0 / 13%);
         border-radius: .125rem;
         flex-grow: 1;
@@ -120,8 +280,8 @@ export default {
     .my__account--section__header {
         align-items: center;
         border-bottom: 1px solid #efefef;
-        padding: 22px 0;
-        height: 80px;
+        padding: 20px 0;
+        height: 85px;
         box-sizing: border-box;
     }
 
@@ -141,13 +301,17 @@ export default {
         font-size: 1.4rem;
         line-height: 1.0625rem;
         color: #555;
-        margin-top: 10px;
+        margin-top: 12px;
     }
 
     .my__account--profile {
         display: flex;
         align-items: flex-start;
         padding-top: 30px;
+    }
+
+    .my__account--profile__left--input__text {
+        font-size: 1.5rem;
     }
 
     /* User sidebar */
