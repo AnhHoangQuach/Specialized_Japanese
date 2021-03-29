@@ -4,7 +4,7 @@
 			<nav class="header__navbar hide-on-mobile-tablet">
 				<ul class="header__navbar-list">
 					<li class="header__navbar-item header__navbar-item--has-qr header__navbar-item--separate">
-						Vào cửa hàng trên ứng dụng F8-Shop
+						Vào cửa hàng trên ứng dụng ATM-Shop
 						<!-- Header QR Code -->
 						<div class="header__qr">
 							<img src="../assets/img/qr_code.png" alt="QR code" class="header__qr-img">
@@ -276,7 +276,7 @@
                         </div>
                         <div class="auth-form__aside">
                             <p class="auth-form__policy-text">
-                                Bằng việc đăng kí, bạn đã đồng ý với F8-Shop về
+                                Bằng việc đăng kí, bạn đã đồng ý với ATM-Shop về
                                 <a href="" class="auth-form__text-link">Điều khoản dịch vụ</a> &
                                 <a href="" class="auth-form__text-link">Chính sách bảo mật</a>
                             </p>

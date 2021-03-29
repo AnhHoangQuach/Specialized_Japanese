@@ -1,0 +1,372 @@
+.app__container2 {
+    background-color: #f4f4f4;
+    padding: 2.5rem 0;
+}
+/* phần ảnh group-images */
+.content__sp {
+    position: relative;
+    padding: 24px 24px 24px 24px;
+    border-right: 2px solid rgb(228, 228, 228);
+    background-color: var(--white--color);
+    border-radius: 6px 0 0 6px;
+}
+
+.group-images {
+    display: flex;
+}
+
+.images {
+    min-width: 70px;
+}
+
+.image-small {
+    width: 70px;
+    height: 80px;
+    border-radius: 4px;
+    border: 1px solid rgb(204, 204, 204);
+    cursor: pointer;
+}
+
+.image-small.image-active {
+    border: 1px solid rgb(24, 158, 255);
+}
+
+.big-image {
+    margin-left: 24px;
+    text-align: center;
+    position: relative;
+    width: 390px;
+    height: 433px;
+}
+
+.big-image__image {
+    width: 100%;
+    height: 100%;
+}
+
+/* thông tin sản phẩm */
+
+.information-product {
+    background-color: #fff;
+    border-radius: 0 6px 0 0;
+}
+
+.header-product {
+    padding: 16px 35px;
+    border-bottom: 1px solid rgb(236, 236, 236);
+}
+
+.header-product-title {
+    margin: 0;
+    font-size: 2.1rem;
+    font-weight: 300;
+    color: rgb(51, 51, 45);
+}
+
+.product-rating {
+    display: inline-flex;
+    align-items: center;
+}
+
+.header-product-rating {
+    margin-left: -19px;
+    font-size: 1.6rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.number__rater {
+    margin: 4px 0 0 5px;
+    color: #189eff;
+    font-size: 1.2rem;
+}
+
+.brand {
+    display: flex;
+    margin-top: 8px;
+}
+
+.brand-header {
+    font-size: 1.35rem;
+    margin: 0;
+    color: rgb(51, 51, 51);;
+}
+
+.brand-main {
+    margin: 0 0 0 3px;
+    color: #189eff;
+    font-size: 1.5rem;
+}
+
+.body-product {
+    background-color: #fafafa;
+    position: relative;
+}
+
+.price-product {
+    width: 100%;
+    display: inline-flex;
+    padding: 15px 35px;
+    background-color: #fafafa;
+}
+
+.price-product-old {
+    font-size: 1.7rem;
+    text-decoration: line-through;
+    color: #929292;
+}
+
+.price-product-current {
+    font-size: 2.4rem;
+    margin-left: 15px;
+    color: #ee4d2d;
+}
+
+.product-textcontent {
+    background-color: #fff;
+}
+
+.product-textcontent-col {
+    padding: 15px 35px !important;
+}
+
+.textcontent-label {
+    color: #757575;
+    align-items: center;
+    font-size: 1.4rem;
+}
+
+.textcontent-main {
+    margin: 0;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.textcontent-detail {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: #ee4d2d;
+}
+
+/* product-pay */
+
+.product-pay {
+    padding: 15px 35px;
+    background-color: #fff;
+    position: relative;
+}
+
+.product-add-cart {
+    height: 50px;
+    width: 180px;
+    background-color: rgba(255,87,34,.1);
+    border-radius: 3px;
+    border: 1px solid #ee4d2d;
+    cursor: pointer;
+    outline: 0;
+}
+
+.product-add-cart:hover {
+    background-color: rgba(255,87,34,.15);
+}
+
+.product-add-cart__icon {
+    font-size: 1.9rem;
+    color: #ee4d2d;
+}
+
+.product-add-cart-text {
+    color: #ee4d2d;
+    font-size: 1.5rem;
+    margin-left: 5px;
+}
+
+.app-animation-cart {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    animation: fadeIn linear 0.5s;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.opencart {
+    margin: 5px 0 5px 253px;
+}
+
+.animation-cart {
+    position: relative;
+    width: 340px;
+    height: 180px;
+    background-color: #4c4c4c;
+    
+    margin: auto;
+    border-radius: 4px;
+}
+
+.animation-cart-icon {
+    font-size: 6.5rem;
+    margin: 32px 0 0 140px;
+    color: #00bfa5;
+    opacity: 1;
+}
+
+.animation-cart-text {
+    font-size: 1.8rem;
+    margin: 26px 0 0 14px;
+    color: #fff;
+}
+
+.product-buy-now {
+    position: absolute;
+    height: 50px;
+    width: 180px;
+    cursor: pointer;
+    margin-left: 25px;
+    border-radius: 3px;
+    background-color: #ee4d2d;
+    outline: 0;
+    border: 0;
+    color: #fff;
+    opacity: 1;
+}
+
+.product-buy-now-click {
+    text-decoration: none;
+    color: #fff;
+    padding: 15px 52px;
+}
+
+.product-buy-now:hover {
+    background-color: #f05d40;
+}
+
+/* bảng thông tin chi tiết */
+.content-table {
+    margin-top: 25px;
+    background-color: #fff;
+}
+
+.information-text {
+    padding: 15px 24px; 
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+}
+
+.table-information {
+    padding: 10px 24px;
+}
+
+.table-information table {
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+
+.table-information table tr {
+    border-bottom: 0;
+}
+
+.table-information table tr td:first-child {
+    width: 220px;
+    color: rgb(79, 79, 79);
+    font-size: 1.4rem;
+    font-weight: 500;
+    background: rgb(239, 239, 239);
+    padding: 0;
+    vertical-align: top;
+    padding: 10px 15px;
+}
+
+.table-information table tr td:last-child {
+    flex: 1 1 0%;
+    border-right: 0px;
+    padding: 10px 25px;
+    color: rgb(36, 36, 36);
+    width: 80.8%;
+}
+
+.table-information table tr:nth-of-type(even){
+    background-color: rgb(235, 235, 235);
+}
+
+/* mô tả (description) sản phẩm */
+
+.description-product {
+    padding: 10px 24px;
+}
+
+.description-text {
+    font-size: 1.4rem;
+    margin: 0 4rem;
+}
+
+/* sản phẩm đã xem */
+.product-seen-list {
+    display: inline-flex;
+    padding: 10px 24px;
+}
+
+.product-seen {
+    width: 245px;
+    height: 295px;
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+}
+
+.product-seen:hover {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 20px;
+    z-index: 1;
+}
+
+.product-seen-img {
+    max-width: 245px;
+    height: 200px;
+    text-align: center;
+    align-items: center;
+}
+
+.product-seen-name {
+    position: relative;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    max-height: 40px;
+    width: 100%;
+    color: rgb(36, 36, 36);
+    font-size: 13px;
+    font-weight: 300;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.54;
+    letter-spacing: 0.1px;
+    /* text-align: left; */
+    /* text-overflow: ellipsis; */
+    -webkit-box-orient: vertical;
+    margin: 0px;
+    overflow: hidden;
+}
+
+.product-seen-price {
+    display: inline-flex;
+    padding: 15px 15px; 
+}
+
+.product-seen-old {
+    font-size: 1.5rem;
+    text-decoration: line-through;
+    margin: 0;
+    padding-right: 15px;
+    color: rgb(36, 36, 36);
+}
+
+.product-seen-current {
+    font-size: 2.1rem;
+    margin: 0;
+    padding-left: 12px;
+    color: #ee4d2d;
+}

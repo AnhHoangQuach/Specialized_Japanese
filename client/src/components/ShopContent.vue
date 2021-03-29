@@ -108,7 +108,7 @@
                         <div class="row sm-gutter">
                             <div class="col l-2-4 m-4 c-6">
                                 <!-- Product item -->
-                                <a class="home-product-item" href="#">
+                                <router-link class="home-product-item" :to="{name: 'Product', params: {id: 13123213}}">
                                     <div class="home-product-item__img" style="background-image:url(https://cf.shopee.vn/file/674c79c2181e1527bac91108d09a7fcf_tn);">
                                         <h4 class="home-product-item__name">[Apple] Macbook Air 2020 256GB New Seal chưa Active hàng Nhập Khẩu</h4>
                                     </div>
@@ -142,7 +142,7 @@
                                         <span class="home-product-item__sale-off-percent">43%</span>
                                         <span class="home-product-item__sale-off-label">GIẢM</span>
                                     </div>
-                                </a>
+                                </router-link>
                             </div>
                             <div class="col l-2-4 m-4 c-6">
                                 <!-- Product item -->

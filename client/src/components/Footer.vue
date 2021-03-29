@@ -9,7 +9,7 @@
                             <a href="" class="footer-item__link">Trung Tâm Trợ Giúp</a>
                         </li>
                         <li class="footer-item">
-                            <a href="" class="footer-item__link">F8-Shop Mall</a>
+                            <a href="" class="footer-item__link">ATM-Shop Mall</a>
                         </li>
                         <li class="footer-item">
                             <a href="" class="footer-item__link">Hướng dẫn mua hàng</a>
