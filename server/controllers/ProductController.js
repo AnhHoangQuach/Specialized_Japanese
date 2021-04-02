@@ -30,6 +30,14 @@ class ProductController {
     addProduct (req, res, next) {
         
     }
+
+    deleteProduct (req, res, next) {
+
+    }
+
+    editProduct (req, res, next) {
+        
+    }
 }
 
 module.exports = new ProductController
