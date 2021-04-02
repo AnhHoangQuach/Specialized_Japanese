@@ -18,6 +18,15 @@ class ProductController {
         });
     }
 
+    getProduct (req, res, next) {
+        const prodId = req.params.productId;
+        Product.findById(prodId).then(product => {
+            return res.json({product: product, status: 200, message: "Success"}) 
+        }).catch(err => {
+            return res.json({status: 400, message: "Failed"})
+        });
+    }
+
     addProduct (req, res, next) {
         
     }

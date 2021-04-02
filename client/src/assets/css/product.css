@@ -246,7 +246,7 @@
 
 /* bảng thông tin chi tiết */
 .content-table {
-    margin-top: 25px;
+    margin: 25px 0;
     background-color: #fff;
 }
 

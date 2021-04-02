@@ -88,7 +88,7 @@
                     <i class="product-add-cart__icon fas fa-cart-plus"></i>
                     <span class="product-add-cart-text">Thêm vào giỏ hàng</span>
                 </button>
-                <button type="submit" class="product-buy-now" aria-disabled="false"><a class="product-buy-now-click" href="/thanhtoan">Mua ngay</a></button>
+                <button type="submit" class="product-buy-now" aria-disabled="false"><router-link :to="{name: 'UserListProduct'}" class="product-buy-now-click">Mua ngay</router-link></button>
                 </div>
             </div>
             </div>
@@ -124,11 +124,55 @@
                         <ul class="description-list">
                             
                             <li class="description-text">
-                            fafsafsaf
+                                fafsafsaf
                             </li>
                             
                         </ul>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid wide" style="padding-bottom: 40px;">
+            <div class="content-table row no-gutters">
+                <div class="col l-12 m-12 c-12">
+                    <h4 class="information-text">Sản phẩm bạn đã xem</h4>
+                    <router-link :to="{name: 'Product', params: {id: 765765}}" style="text-decoration: none;">
+                        <div class="product-seen-list">
+                            <div class="product-seen">
+                                <img src="https://cf.shopee.vn/file/089e81de274701dcdd765952c524dde3" alt="balo" class="product-seen-img">
+                                <p class="product-seen-name">dasdsadasd</p>
+                                <div class="product-seen-price">
+                                <p class="product-seen-old">212312321đ</p>
+                                <p class="product-seen-current">3123213213đ</p>
+                                </div>
+                            </div>
+                        </div>
+                    </router-link>
+                    <router-link :to="{name: 'Product', params: {id: 765765}}" style="text-decoration: none;">
+                        <div class="product-seen-list">
+                            <div class="product-seen">
+                                <img src="https://cf.shopee.vn/file/f73838bbd767f36b99435faed22b19b5" alt="balo" class="product-seen-img">
+                                <p class="product-seen-name">dasdsadasd</p>
+                                <div class="product-seen-price">
+                                <p class="product-seen-old">212312321đ</p>
+                                <p class="product-seen-current">3123213213đ</p>
+                                </div>
+                            </div>
+                        </div>
+                    </router-link>
+                    <router-link :to="{name: 'Product', params: {id: 765765}}" style="text-decoration: none;">
+                        <div class="product-seen-list">
+                            <div class="product-seen">
+                                <img src="https://cf.shopee.vn/file/089e81de274701dcdd765952c524dde3" alt="balo" class="product-seen-img">
+                                <p class="product-seen-name">dasdsadasd</p>
+                                <div class="product-seen-price">
+                                <p class="product-seen-old">212312321đ</p>
+                                <p class="product-seen-current">3123213213đ</p>
+                                </div>
+                            </div>
+                        </div>
+                    </router-link>
                 </div>
             </div>
         </div>

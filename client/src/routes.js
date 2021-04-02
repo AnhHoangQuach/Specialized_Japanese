@@ -4,6 +4,9 @@ import ShopContent from './components/ShopContent.vue';
 import Help from './components/Help.vue'
 import UserInfo from './components/UserInfo.vue'
 import Product from './components/Product.vue'
+import UserListProduct from './components/UserListProduct.vue'
+import PayProduct from './components/PayProduct.vue'
+import ChangeUserInfo from './components/ChangeUserInfo.vue'
 
 Vue.use(VueRouter)
 
@@ -13,5 +16,8 @@ export const router = new VueRouter({
         {path: '/help', name: 'Help', component: Help},
         {path: '/user/profile', name: 'UserInfo', component: UserInfo},
         {path: '/product/:id', name: 'Product', component: Product},
+        {path: '/cart', name: 'UserListProduct', component: UserListProduct},
+        {path: '/pay', name: 'PayProduct', component: PayProduct},
+        {path: '/checkout', name: 'ChangeUserInfo', component: ChangeUserInfo},
     ]
 })
