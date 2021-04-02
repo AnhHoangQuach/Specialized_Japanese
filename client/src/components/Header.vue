@@ -88,7 +88,7 @@
 								<router-link :to="{name: 'UserInfo'}">Tài khoản của tôi</router-link>
 							</li>
 							<li class="header__navbar-user-item">
-								<a href="">Đơn mua</a>
+								<router-link :to="{name: 'UserBill'}">Đơn mua</router-link>
 							</li>
 							<li class="header__navbar-user-item header__navbar-user-item--separate">
 								<a href="/" @click="logout">Đăng xuất</a>

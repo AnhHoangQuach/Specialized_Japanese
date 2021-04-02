@@ -66,12 +66,12 @@
                     </div>
                 </div>
             </div>
-            <div class="grid wide">
+            <div class="grid wide" v-if="isPay">
                 <div class="row no-gutters">
                     <div class="col l-12 m-12 c-12">
                         <div class="method-pay">
                             <div class="method-pay-text">Phương thức thanh toán</div>
-                            <button class="method-pay-value">Thanh toán khi nhận hàng</button>
+                            <button class="method-pay-value" @click="clickPay">Thanh toán khi nhận hàng</button>
                         </div>
                         <div class="pay-end">
                             <button class="pay-end-button">Đặt hàng</button>
@@ -79,7 +79,7 @@
                     </div>
                 </div>
             </div>
-            <div class="grid wide" style="display: none;">
+            <div class="grid wide" v-else>
                 <div class="row no-gutters">
                     <div class="col l-12 m-12 c-12">
                         <div class="pay-done">
@@ -89,7 +89,7 @@
                             <div class="status-cart-main">
                                 <i class="status-cart-icon fas fa-shipping-fast"></i>
                                 <div class="status-cart-text">Đã đặt hàng, sản phẩm sẽ được giao đến sớm nhất cho bạn</div>
-                                <a href="/" class="status-cart-home">Tiếp tục mua hàng</a>
+                                <router-link :to="{name: 'ShopContent'}" class="status-cart-home">Tiếp tục mua hàng</router-link>
                             </div>
                         </div>
                     </div>
@@ -101,7 +101,17 @@
 
 <script>
 export default {
-
+    name: 'PayProduct',
+    data () {
+        return {
+            isPay: true
+        }
+    },
+    methods: {
+        clickPay() {
+            this.isPay = false
+        }
+    }
 }
 </script>
 
