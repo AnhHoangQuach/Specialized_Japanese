@@ -28,15 +28,45 @@ class ProductController {
     }
 
     addProduct (req, res, next) {
-        
+        const title = req.body.title;
+        const image = req.file;
+        const price = req.body.price;
+        const description = req.body.description
+
+        if (!image) {
+            return res.json({status: 400, message: "Attached file is not an image"})
+        }
+
+        product.save();
     }
 
     deleteProduct (req, res, next) {
-
+        const prodId = req.body.productId;
+        Product.findByIdAndRemove(prodId).then(() => {
+            return res.json({status: 200, message: "Deleted Product"})
+        }).catch(err => {
+            return res.json({status: 400, message: err.message})
+        });
     }
 
     editProduct (req, res, next) {
-        
+        const prodId = req.body.productId;
+        const updatedTitle = req.body.title;
+        const updatedPrice = req.body.price;
+        const updatedImageUrl = req.body.imageUrl;
+        const updatedDesc = req.body.description;
+
+        Product.findById(prodId).then(product => {
+            product.title = updatedTitle;
+            product.price = updatedPrice;
+            product.description = updatedDesc;
+            product.imageUrl = updatedImageUrl;
+            return product.save();
+        }).then(result => {
+            return res.json({status: 200, message: "Updated Product"})
+        }).catch(err => {
+            return res.json({status: 400, message: err.message})
+        });
     }
 }
 
