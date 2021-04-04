@@ -90,6 +90,9 @@
 							<li class="header__navbar-user-item">
 								<router-link :to="{name: 'UserBill'}">Đơn mua</router-link>
 							</li>
+							<li class="header__navbar-user-item">
+								<router-link :to="{name: 'AddProduct'}">Tạo sản phẩm</router-link>
+							</li>
 							<li class="header__navbar-user-item header__navbar-user-item--separate">
 								<a href="/" @click="logout">Đăng xuất</a>
 							</li>

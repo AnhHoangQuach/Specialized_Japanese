@@ -5,7 +5,7 @@
                 <div class="col l-12 m-12 c-12">
                     <h3 class="address-title">2. Địa chỉ giao hàng</h3>
                     <div class="table-address">
-                        <form action="/checkout/diachi" method="POST" class="form form-address" id="form-3">
+                        <div class="form form-address" id="form-3">
                             <div class="form-group">
                                 <label for="fullname" class="form-label">Họ tên</label>
                                 <input id="hoten" name="hoten" rules="required|min:6" type="text" placeholder="Nhập họ tên" class="form-control">
@@ -48,7 +48,7 @@
                             <div class="auth-form__controls">
                                 <button style="width: 100%;" class="form-submit checkout">Xác nhận</button>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>

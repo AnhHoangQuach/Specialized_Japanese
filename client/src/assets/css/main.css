@@ -1195,7 +1195,7 @@ body {
 
 .home-product-item__price {
     display: flex;
-    justify-content: baseline;
+    justify-content: space-around;
     flex-wrap: wrap;
 }
 

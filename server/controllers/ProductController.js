@@ -28,21 +28,35 @@ class ProductController {
     }
 
     addProduct (req, res, next) {
-        const title = req.body.title;
-        const image = req.file;
+        const name = req.body.name;
+        const image = req.body.image;
         const price = req.body.price;
         const description = req.body.description
+        const place = req.body.place
 
         if (!image) {
             return res.json({status: 400, message: "Attached file is not an image"})
         }
 
-        product.save();
+        const product = new Product({
+            name: name, 
+            price: price, 
+            description: description, 
+            imageUrl: image, 
+            place: place,
+            userId: req.body.userId
+        })
+
+        product.save().then(result => {
+            return res.json({status: 200, message: "Created Product"})
+        }).catch(err => {
+            return res.json({status: 400, message: err.message})
+        })
     }
 
     deleteProduct (req, res, next) {
         const prodId = req.body.productId;
-        Product.findByIdAndRemove(prodId).then(() => {
+        Product.deleteById(prodId).then(() => {
             return res.json({status: 200, message: "Deleted Product"})
         }).catch(err => {
             return res.json({status: 400, message: err.message})

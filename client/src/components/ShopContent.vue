@@ -106,15 +106,15 @@
 
                     <div class="home-product">
                         <div class="row sm-gutter">
-                            <div class="col l-2-4 m-4 c-6">
+                            <div class="col l-2-4 m-4 c-6" v-for="product in products" :key="product._id">
                                 <!-- Product item -->
                                 <router-link class="home-product-item" :to="{name: 'Product', params: {id: 13123213}}">
-                                    <div class="home-product-item__img" style="background-image:url(https://cf.shopee.vn/file/674c79c2181e1527bac91108d09a7fcf_tn);">
-                                        <h4 class="home-product-item__name">[Apple] Macbook Air 2020 256GB New Seal chưa Active hàng Nhập Khẩu</h4>
+                                    <div class="home-product-item__img" v-bind:style="{ backgroundImage: 'url(' + product.imageUrl + ')' }">
+                                        <h4 class="home-product-item__name">{{product.name}}</h4>
                                     </div>
                                     <div class="home-product-item__price">
                                         <span class="home-product-item__price-old">1.200.000đ</span>
-                                        <span class="home-product-item__current">999.000đ</span>
+                                        <span class="home-product-item__current">{{formatNumber(product.price)}}</span>
                                     </div>
                                     <div class="home-product-item__action">
                                         <span class="home-product-item__like home-product-item__like--liked">
@@ -132,7 +132,7 @@
                                     </div>
                                     <div class="home-product-item__origin">
                                         <span class="home-product-item__brand">Whoo</span>
-                                        <span class="home-product-item__origin-name">Nhật Bản</span>
+                                        <span class="home-product-item__origin-name">{{product.place}}</span>
                                     </div>
                                     <div class="home-product-item__favourite">
                                         <i class="fas fa-check"></i>
@@ -143,349 +143,6 @@
                                         <span class="home-product-item__sale-off-label">GIẢM</span>
                                     </div>
                                 </router-link>
-                            </div>
-                            <div class="col l-2-4 m-4 c-6">
-                                <!-- Product item -->
-                                <a class="home-product-item" href="#">
-                                    <div class="home-product-item__img" style="background-image:url(https://cf.shopee.vn/file/674c79c2181e1527bac91108d09a7fcf_tn);">
-                                        <h4 class="home-product-item__name">[Apple] Macbook Air 2020 256GB New Seal chưa Active hàng Nhập Khẩu</h4>
-                                    </div>
-                                    <div class="home-product-item__price">
-                                        <span class="home-product-item__price-old">1.200.000đ</span>
-                                        <span class="home-product-item__current">999.000đ</span>
-                                    </div>
-                                    <div class="home-product-item__action">
-                                        <span class="home-product-item__like home-product-item__like--liked">
-                                            <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                                            <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                                        </span>
-                                        <div class="home-product-item__rating">
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <span class="home-product-item__sold">88 đã bán</span>
-                                    </div>
-                                    <div class="home-product-item__origin">
-                                        <span class="home-product-item__brand">Whoo</span>
-                                        <span class="home-product-item__origin-name">Nhật Bản</span>
-                                    </div>
-                                    <div class="home-product-item__favourite">
-                                        <i class="fas fa-check"></i>
-                                        
-                                        <span>Yêu thích</span>
-                                    </div>
-                                    <div class="home-product-item__sale-off">
-                                        <span class="home-product-item__sale-off-percent">43%</span>
-                                        <span class="home-product-item__sale-off-label">GIẢM</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col l-2-4 m-4 c-6">
-                                <!-- Product item -->
-                                <a class="home-product-item" href="#">
-                                    <div class="home-product-item__img" style="background-image:url(https://cf.shopee.vn/file/674c79c2181e1527bac91108d09a7fcf_tn);">
-                                        <h4 class="home-product-item__name">[Apple] Macbook Air 2020 256GB New Seal chưa Active hàng Nhập Khẩu</h4>
-                                    </div>
-                                    <div class="home-product-item__price">
-                                        <span class="home-product-item__price-old">1.200.000đ</span>
-                                        <span class="home-product-item__current">999.000đ</span>
-                                    </div>
-                                    <div class="home-product-item__action">
-                                        <span class="home-product-item__like home-product-item__like--liked">
-                                            <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                                            <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                                        </span>
-                                        <div class="home-product-item__rating">
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <span class="home-product-item__sold">88 đã bán</span>
-                                    </div>
-                                    <div class="home-product-item__origin">
-                                        <span class="home-product-item__brand">Whoo</span>
-                                        <span class="home-product-item__origin-name">Nhật Bản</span>
-                                    </div>
-                                    <div class="home-product-item__favourite">
-                                        <i class="fas fa-check"></i>
-                                        <span>Yêu thích</span>
-                                    </div>
-                                    <div class="home-product-item__sale-off">
-                                        <span class="home-product-item__sale-off-percent">43%</span>
-                                        <span class="home-product-item__sale-off-label">GIẢM</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col l-2-4 m-4 c-6">
-                                <!-- Product item -->
-                                <a class="home-product-item" href="#">
-                                    <div class="home-product-item__img" style="background-image:url(https://cf.shopee.vn/file/674c79c2181e1527bac91108d09a7fcf_tn);">
-                                        <h4 class="home-product-item__name">[Apple] Macbook Air 2020 256GB New Seal chưa Active hàng Nhập Khẩu</h4>
-                                    </div>
-                                    <div class="home-product-item__price">
-                                        <span class="home-product-item__price-old">1.200.000đ</span>
-                                        <span class="home-product-item__current">999.000đ</span>
-                                    </div>
-                                    <div class="home-product-item__action">
-                                        <span class="home-product-item__like home-product-item__like--liked">
-                                            <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                                            <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                                        </span>
-                                        <div class="home-product-item__rating">
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <span class="home-product-item__sold">88 đã bán</span>
-                                    </div>
-                                    <div class="home-product-item__origin">
-                                        <span class="home-product-item__brand">Whoo</span>
-                                        <span class="home-product-item__origin-name">Nhật Bản</span>
-                                    </div>
-                                    <div class="home-product-item__favourite">
-                                        <i class="fas fa-check"></i>
-                                        <span>Yêu thích</span>
-                                    </div>
-                                    <div class="home-product-item__sale-off">
-                                        <span class="home-product-item__sale-off-percent">43%</span>
-                                        <span class="home-product-item__sale-off-label">GIẢM</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col l-2-4 m-4 c-6">
-                                <!-- Product item -->
-                                <a class="home-product-item" href="#">
-                                    <div class="home-product-item__img" style="background-image:url(https://cf.shopee.vn/file/674c79c2181e1527bac91108d09a7fcf_tn);">
-                                        <h4 class="home-product-item__name">[Apple] Macbook Air 2020 256GB New Seal chưa Active hàng Nhập Khẩu</h4>
-                                    </div>
-                                    <div class="home-product-item__price">
-                                        <span class="home-product-item__price-old">1.200.000đ</span>
-                                        <span class="home-product-item__current">999.000đ</span>
-                                    </div>
-                                    <div class="home-product-item__action">
-                                        <span class="home-product-item__like home-product-item__like--liked">
-                                            <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                                            <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                                        </span>
-                                        <div class="home-product-item__rating">
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <span class="home-product-item__sold">88 đã bán</span>
-                                    </div>
-                                    <div class="home-product-item__origin">
-                                        <span class="home-product-item__brand">Whoo</span>
-                                        <span class="home-product-item__origin-name">Nhật Bản</span>
-                                    </div>
-                                    <div class="home-product-item__favourite">
-                                        <i class="fas fa-check"></i>
-                                        <span>Yêu thích</span>
-                                    </div>
-                                    <div class="home-product-item__sale-off">
-                                        <span class="home-product-item__sale-off-percent">43%</span>
-                                        <span class="home-product-item__sale-off-label">GIẢM</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col l-2-4 m-4 c-6">
-                                <!-- Product item -->
-                                <a class="home-product-item" href="#">
-                                    <div class="home-product-item__img" style="background-image:url(https://cf.shopee.vn/file/674c79c2181e1527bac91108d09a7fcf_tn);">
-                                        <h4 class="home-product-item__name">[Apple] Macbook Air 2020 256GB New Seal chưa Active hàng Nhập Khẩu</h4>
-                                    </div>
-                                    <div class="home-product-item__price">
-                                        <span class="home-product-item__price-old">1.200.000đ</span>
-                                        <span class="home-product-item__current">999.000đ</span>
-                                    </div>
-                                    <div class="home-product-item__action">
-                                        <span class="home-product-item__like home-product-item__like--liked">
-                                            <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                                            <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                                        </span>
-                                        <div class="home-product-item__rating">
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <span class="home-product-item__sold">88 đã bán</span>
-                                    </div>
-                                    <div class="home-product-item__origin">
-                                        <span class="home-product-item__brand">Whoo</span>
-                                        <span class="home-product-item__origin-name">Nhật Bản</span>
-                                    </div>
-                                    <div class="home-product-item__favourite">
-                                        <i class="fas fa-check"></i>
-                                        <span>Yêu thích</span>
-                                    </div>
-                                    <div class="home-product-item__sale-off">
-                                        <span class="home-product-item__sale-off-percent">43%</span>
-                                        <span class="home-product-item__sale-off-label">GIẢM</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col l-2-4 m-4 c-6">
-                                <!-- Product item -->
-                                <a class="home-product-item" href="#">
-                                    <div class="home-product-item__img" style="background-image:url(https://cf.shopee.vn/file/674c79c2181e1527bac91108d09a7fcf_tn);">
-                                        <h4 class="home-product-item__name">[Apple] Macbook Air 2020 256GB New Seal chưa Active hàng Nhập Khẩu</h4>
-                                    </div>
-                                    <div class="home-product-item__price">
-                                        <span class="home-product-item__price-old">1.200.000đ</span>
-                                        <span class="home-product-item__current">999.000đ</span>
-                                    </div>
-                                    <div class="home-product-item__action">
-                                        <span class="home-product-item__like home-product-item__like--liked">
-                                            <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                                            <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                                        </span>
-                                        <div class="home-product-item__rating">
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <span class="home-product-item__sold">88 đã bán</span>
-                                    </div>
-                                    <div class="home-product-item__origin">
-                                        <span class="home-product-item__brand">Whoo</span>
-                                        <span class="home-product-item__origin-name">Nhật Bản</span>
-                                    </div>
-                                    <div class="home-product-item__favourite">
-                                        <i class="fas fa-check"></i>
-                                        <span>Yêu thích</span>
-                                    </div>
-                                    <div class="home-product-item__sale-off">
-                                        <span class="home-product-item__sale-off-percent">43%</span>
-                                        <span class="home-product-item__sale-off-label">GIẢM</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col l-2-4 m-4 c-6">
-                                <!-- Product item -->
-                                <a class="home-product-item" href="#">
-                                    <div class="home-product-item__img" style="background-image:url(https://cf.shopee.vn/file/674c79c2181e1527bac91108d09a7fcf_tn);">
-                                        <h4 class="home-product-item__name">[Apple] Macbook Air 2020 256GB New Seal chưa Active hàng Nhập Khẩu</h4>
-                                    </div>
-                                    <div class="home-product-item__price">
-                                        <span class="home-product-item__price-old">1.200.000đ</span>
-                                        <span class="home-product-item__current">999.000đ</span>
-                                    </div>
-                                    <div class="home-product-item__action">
-                                        <span class="home-product-item__like home-product-item__like--liked">
-                                            <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                                            <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                                        </span>
-                                        <div class="home-product-item__rating">
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <span class="home-product-item__sold">88 đã bán</span>
-                                    </div>
-                                    <div class="home-product-item__origin">
-                                        <span class="home-product-item__brand">Whoo</span>
-                                        <span class="home-product-item__origin-name">Nhật Bản</span>
-                                    </div>
-                                    <div class="home-product-item__favourite">
-                                        <i class="fas fa-check"></i>
-                                        <span>Yêu thích</span>
-                                    </div>
-                                    <div class="home-product-item__sale-off">
-                                        <span class="home-product-item__sale-off-percent">43%</span>
-                                        <span class="home-product-item__sale-off-label">GIẢM</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col l-2-4 m-4 c-6">
-                                <!-- Product item -->
-                                <a class="home-product-item" href="#">
-                                    <div class="home-product-item__img" style="background-image:url(https://cf.shopee.vn/file/674c79c2181e1527bac91108d09a7fcf_tn);">
-                                        <h4 class="home-product-item__name">[Apple] Macbook Air 2020 256GB New Seal chưa Active hàng Nhập Khẩu</h4>
-                                    </div>
-                                    <div class="home-product-item__price">
-                                        <span class="home-product-item__price-old">1.200.000đ</span>
-                                        <span class="home-product-item__current">999.000đ</span>
-                                    </div>
-                                    <div class="home-product-item__action">
-                                        <span class="home-product-item__like home-product-item__like--liked">
-                                            <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                                            <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                                        </span>
-                                        <div class="home-product-item__rating">
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <span class="home-product-item__sold">88 đã bán</span>
-                                    </div>
-                                    <div class="home-product-item__origin">
-                                        <span class="home-product-item__brand">Whoo</span>
-                                        <span class="home-product-item__origin-name">Nhật Bản</span>
-                                    </div>
-                                    <div class="home-product-item__favourite">
-                                        <i class="fas fa-check"></i>
-                                        <span>Yêu thích</span>
-                                    </div>
-                                    <div class="home-product-item__sale-off">
-                                        <span class="home-product-item__sale-off-percent">43%</span>
-                                        <span class="home-product-item__sale-off-label">GIẢM</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col l-2-4 m-4 c-6">
-                                <!-- Product item -->
-                                <a class="home-product-item" href="#">
-                                    <div class="home-product-item__img" style="background-image:url(https://cf.shopee.vn/file/674c79c2181e1527bac91108d09a7fcf_tn);">
-                                        <h4 class="home-product-item__name">[Apple] Macbook Air 2020 256GB New Seal chưa Active hàng Nhập Khẩu</h4>
-                                    </div>
-                                    <div class="home-product-item__price">
-                                        <span class="home-product-item__price-old">1.200.000đ</span>
-                                        <span class="home-product-item__current">999.000đ</span>
-                                    </div>
-                                    <div class="home-product-item__action">
-                                        <span class="home-product-item__like home-product-item__like--liked">
-                                            <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                                            <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                                        </span>
-                                        <div class="home-product-item__rating">
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="home-product-item__star--gold fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <span class="home-product-item__sold">88 đã bán</span>
-                                    </div>
-                                    <div class="home-product-item__origin">
-                                        <span class="home-product-item__brand">Whoo</span>
-                                        <span class="home-product-item__origin-name">Nhật Bản</span>
-                                    </div>
-                                    <div class="home-product-item__favourite">
-                                        <i class="fas fa-check"></i>
-                                        <span>Yêu thích</span>
-                                    </div>
-                                    <div class="home-product-item__sale-off">
-                                        <span class="home-product-item__sale-off-percent">43%</span>
-                                        <span class="home-product-item__sale-off-label">GIẢM</span>
-                                    </div>
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -530,13 +187,25 @@
 </template>
 
 <script>
-
+import ProductsService from '@/services/ProductsService'
 export default {
     name: 'ShopContent',
     data () {
         return {
-
+            products: null,
         }
+    },
+    methods: {
+        formatNumber: number => {
+            console.log(number)
+            var number_str = number.toString()
+            return number_str.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+    },
+    async mounted() {
+        var response = await ProductsService.index()
+        this.products = response.data.products
+        console.log(this.products)
     }
 }
 </script>

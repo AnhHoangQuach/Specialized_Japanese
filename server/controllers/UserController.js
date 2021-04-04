@@ -41,6 +41,7 @@ class UserController {
             }
             bcrypt.compare(req.body.password, user.password, (err, result) => {
                 if (result == true) {
+                    req.user = user
                     return res.json({user: user, token: jwtSignUser(user), status: 200, message: "Login Success"})
                 } else {
                     return res.json({status: 404, message: 'Username and Password are incorrect'})

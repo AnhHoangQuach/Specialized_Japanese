@@ -8,6 +8,7 @@ import UserListProduct from './components/UserListProduct.vue'
 import PayProduct from './components/PayProduct.vue'
 import ChangeUserInfo from './components/ChangeUserInfo.vue'
 import UserBill from './components/UserBill.vue'
+import AddProduct from './components/AddProduct.vue'
 
 Vue.use(VueRouter)
 
@@ -21,5 +22,6 @@ export const router = new VueRouter({
         {path: '/pay', name: 'PayProduct', component: PayProduct},
         {path: '/checkout', name: 'ChangeUserInfo', component: ChangeUserInfo},
         {path: '/bill', name: 'UserBill', component: UserBill},
+        {path: '/add-product', name: 'AddProduct', component: AddProduct},
     ]
 })
