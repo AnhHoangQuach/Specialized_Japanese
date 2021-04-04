@@ -1,9 +1,10 @@
+const User = require('../models/UserModels')
 const Product = require('../models/ProductModels')
-const ITEMS_PER_PAGE = 2;
+const ITEMS_PER_PAGE = 10;
 class ProductController {
     getProducts (req, res, next) {
         const page = +req.query.page || 1;
-        let totalItems;
+        let totalItems
         Product.find()
         .countDocuments()
         .then(numProducts => {
@@ -14,7 +15,7 @@ class ProductController {
             return res.json({products: products, status: 200, message: "Success"})
         })
         .catch(err => {
-            return res.json({status: 500, message: "Failed"})
+            return res.json({status: 500, message: err.message})
         });
     }
 
@@ -23,7 +24,7 @@ class ProductController {
         Product.findById(prodId).then(product => {
             return res.json({product: product, status: 200, message: "Success"}) 
         }).catch(err => {
-            return res.json({status: 400, message: "Failed"})
+            return res.json({status: 400, message: err.message})
         });
     }
 
@@ -81,6 +82,20 @@ class ProductController {
         }).catch(err => {
             return res.json({status: 400, message: err.message})
         });
+    }
+
+    getProductsByUser(req, res, next) {
+        User.findOne({_id: req.params.userId}, (err, user) => {
+            if (user == null) {
+                return res.json({status: 404, message: 'User is not existed'})
+            } else if (err) {
+                return res.json({status: 404, message: err.message})
+            } else {
+                Product.find({userId: user._id}).then(products => {
+                    return res.json({status: 200, message: "Get Product By User Id Success", products: products})
+                })
+            }
+        })
     }
 }
 

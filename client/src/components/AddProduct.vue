@@ -37,6 +37,25 @@
                         </div>
                     </div>
                 </div>
+                <div class="grid wide" style="padding-bottom: 40px;">
+                    <div class="content-table row no-gutters">
+                        <div class="col l-12 m-12 c-12" v-for="product in productsSellByUser" v-bind:key="product._id">
+                            <h4 class="information-text">Sản phẩm đã đăng bán</h4>
+                            <router-link :to="{name: 'Product', params: {id: 765765}}" style="text-decoration: none;">
+                                <div class="product-seen-list">
+                                    <div class="product-seen">
+                                        <img src="https://cf.shopee.vn/file/089e81de274701dcdd765952c524dde3" alt="balo" class="product-seen-img">
+                                        <p class="product-seen-name">dasdsadasd</p>
+                                        <div class="product-seen-price">
+                                        <p class="product-seen-old">212312321đ</p>
+                                        <p class="product-seen-current">3123213213đ</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </router-link>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -52,6 +71,7 @@ export default {
             description: '',
             place: '',
             image: '',
+            productsSellByUser: null
         }
     },
     methods: {
@@ -72,12 +92,19 @@ export default {
                 userId: this.$store.state.user._id
             })
             if (response.data.status == 200) {
-                console.log('oke')
+                this.$toastr.s(response.data.message)
+                this.$router.push({ name: 'ShopContent' })
             } else {
                 this.$toastr.e(response.data.message)
             }
             this.reloadForm()
         },
+    },
+    async mounted () {
+        const userId = this.$store.state.user._id
+        const response = await ProductsService.getProductsByUserId(userId)
+        this.productsSellByUser = response.data.products
+        console.log(response.data)
     }
 }
 </script>

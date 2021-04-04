@@ -8,33 +8,33 @@
                     <div class="group-images">
                         <div class="images">
                             <a>
-                                <div src="https://cf.shopee.vn/file/880a166758acaf9006e862a7a0b5a578">
-                                <img src="https://cf.shopee.vn/file/880a166758acaf9006e862a7a0b5a578" class="image-small" alt="balo cao cấp">
+                                <div v-bind:src="product.imageUrl">
+                                    <img v-bind:src="product.imageUrl" class="image-small" alt="">
                                 </div>
                             </a>
                             <a>
-                                <div src="https://cf.shopee.vn/file/880a166758acaf9006e862a7a0b5a578">
-                                <img src="https://cf.shopee.vn/file/880a166758acaf9006e862a7a0b5a578" class="image-small" alt="balo cao cấp">
+                                <div v-bind:src="product.imageUrl">
+                                    <img v-bind:src="product.imageUrl" class="image-small" alt="">
                                 </div>
                             </a>
                             <a>
-                                <div src="https://cf.shopee.vn/file/880a166758acaf9006e862a7a0b5a578">
-                                <img src="https://cf.shopee.vn/file/880a166758acaf9006e862a7a0b5a578" class="image-small" alt="balo cao cấp">
+                                <div v-bind:src="product.imageUrl">
+                                    <img v-bind:src="product.imageUrl" class="image-small" alt="">
                                 </div>
                             </a>
                             <a>
-                                <div src="https://cf.shopee.vn/file/880a166758acaf9006e862a7a0b5a578">
-                                <img src="https://cf.shopee.vn/file/880a166758acaf9006e862a7a0b5a578" class="image-small" alt="balo cao cấp">
+                                <div v-bind:src="product.imageUrl">
+                                    <img v-bind:src="product.imageUrl" class="image-small" alt="">
                                 </div>
                             </a>
                             <a>
-                                <div src="https://cf.shopee.vn/file/880a166758acaf9006e862a7a0b5a578">
-                                <img src="https://cf.shopee.vn/file/880a166758acaf9006e862a7a0b5a578" class="image-small" alt="balo cao cấp">
+                                <div v-bind:src="product.imageUrl">
+                                    <img v-bind:src="product.imageUrl" class="image-small" alt="">
                                 </div>
                             </a>
                         </div>
                         <div class="big-image">
-                            <img src="https://cf.shopee.vn/file/880a166758acaf9006e862a7a0b5a578" alt="balo cap cấp" class="big-image__image">
+                            <img v-bind:src="product.imageUrl" alt="" class="big-image__image">
                         </div>
                     </div>
                 </div>
@@ -42,13 +42,13 @@
             <div class="col l-7 m-12 c-12" style="border-radius: 0 0 6px 0;">
                 <div class="information-product">
                     <div class="header-product">
-                        <p class="header-product-title">aasfasfsaf</p>
+                        <p class="header-product-title">{{product.name}}</p>
                         <div class="product-rating">
                             <div class="home-product-item__rating header-product-rating">
-                                <fa-icon :icon="['fa', 'star']" />
-                                <fa-icon :icon="['fa', 'star']" />
-                                <fa-icon :icon="['fa', 'star']" />
-                                <fa-icon :icon="['fa', 'star']" />
+                                <fa-icon :icon="['fa', 'star']" class="home-product-item__star--gold" />
+                                <fa-icon :icon="['fa', 'star']" class="home-product-item__star--gold" />
+                                <fa-icon :icon="['fa', 'star']" class="home-product-item__star--gold" />
+                                <fa-icon :icon="['fa', 'star']" class="home-product-item__star--gold" />
                                 <fa-icon :icon="['fa', 'star']" />
                             </div>
                             <p class="number__rater">(275 người đánh giá)</p>
@@ -56,14 +56,14 @@
             
                         <div class="brand">
                             <p class="brand-header">Thương hiệu:</p>
-                            <p class="brand-main"> fafasfsaf</p>
+                            <p class="brand-main"> {{product.place}}</p>
                         </div>
                     </div>
                 </div>
                 <div class="body-product">
                 <div class="price-product">
                     <div class="price-product-old">10000đ</div>
-                    <div class="price-product-current">100000đ</div>
+                    <div class="price-product-current">{{product.price}}</div>
                 </div>
                 <div class="product-textcontent">
                     <div class="row no-gutters">
@@ -72,11 +72,7 @@
                     </div>
                     <div class="product-textcontent-col col l-9 m-9 c-12">
                         <p class="textcontent-main">
-                            rqwrqwrqwrwqrrqwrqwrqwrwqr
-                            rqwrqwrqwrwqrrqwrqwrqwrwqr
-                            rqwrqwrqwrwqrrqwrqwrqwrwqr
-                            rqwrqwrqwrwqrrqwrqwrqwrwqr
-                            rqwrqwrqwrwqrrqwrqwrqwrwqr
+                            {{product.description}}
                         </p>
                         <a href="#section2" class="textcontent-detail">Xem chi tiết</a>
                     </div>
@@ -100,16 +96,14 @@
                     <div class="table-information">
                         <table>
                             <tbody>
-                            <tr>
-                                <td>Thương hiệu</td>
-                                <td class="setbackground">bdfbfbfdb</td>
-                            </tr>
-                            <tr>
-                                <td>Xuất xứ thương hiệu</td>
-                                <td class="setbackground">asfasfasfsaf</td>
-                            </tr>
-                    
-                            
+                                <tr>
+                                    <td>Thương hiệu</td>
+                                    <td class="setbackground">{{product.description}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Xuất xứ thương hiệu</td>
+                                    <td class="setbackground">{{product.place}}</td>
+                                </tr> 
                             </tbody>
                         </table>
                     </div>
@@ -121,12 +115,10 @@
                 <div class="col l-12 m-12 c-12">
                     <h4 class="information-text">Mô tả sản phẩm</h4>
                     <div class="description-product">
-                        <ul class="description-list">
-                            
+                        <ul class="description-list">  
                             <li class="description-text">
-                                fafsafsaf
+                                {{product.description}}
                             </li>
-                            
                         </ul>
                     </div>
                 </div>
@@ -180,8 +172,18 @@
 </template>
 
 <script>
+import ProductsService from '@/services/ProductsService'
 export default {
-
+    data() {
+        return {
+            product: null,
+        }
+    },
+    async mounted () {
+        const prodId = this.$route.params.id
+        const response = await ProductsService.getProduct(prodId)
+        this.product = response.data.product
+    }
 }
 </script>
 

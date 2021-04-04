@@ -23,7 +23,7 @@ class UserController {
                         if (err) {
                             return res.json({message: err.message, status: 404, email: result.email})
                         }
-                        res.json({message: "Register success", status: 200})
+                        res.json({message: "Register success", status: 200, user: user})
                     })
                 })
             } else {
@@ -41,7 +41,6 @@ class UserController {
             }
             bcrypt.compare(req.body.password, user.password, (err, result) => {
                 if (result == true) {
-                    req.user = user
                     return res.json({user: user, token: jwtSignUser(user), status: 200, message: "Login Success"})
                 } else {
                     return res.json({status: 404, message: 'Username and Password are incorrect'})
