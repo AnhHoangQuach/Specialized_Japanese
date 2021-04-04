@@ -11,5 +11,11 @@ export default {
     },
     getProductsByUserId(userId) {
         return Api().get(`products/users/${userId}`)
+    },
+    deleteProductId(productId) {
+        return Api().post('products/delete-product', productId)
+    },
+    addProductToCart(product) {
+        return Api().post('products/cart', product) 
     }
 }

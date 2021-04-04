@@ -35,16 +35,16 @@
                         <button class="home-filter__btn btn">Bán chạy</button>
 
                         <div class="select-input">
-                            <span class="select-input__label">Giá</span>
+                            <span class="select-input__label" id="product__price">Giá</span>
                             <fa-icon :icon="['fas', 'angle-down']" class="select-input__icon"/>
 
                             <!-- List options -->
                             <ul class="select-input__list">
                                 <li class="select-input__item">
-                                    <a href="" class="select-input__link">Giá: Thấp đến Cao</a>
+                                    <div @click="sortPriceProductsInc" class="select-input__link" id="prodInc">Giá: Thấp đến Cao</div>
                                 </li>
                                 <li class="select-input__item">
-                                    <a href="" class="select-input__link">Giá: Cao đến Thấp</a>
+                                    <div @click="sortPriceProductsDesc" class="select-input__link" id="prodDesc">Giá: Cao đến Thấp</div>
                                 </li>
                             </ul>
                         </div>
@@ -188,6 +188,7 @@
 
 <script>
 import ProductsService from '@/services/ProductsService'
+import $ from 'jquery'
 export default {
     name: 'ShopContent',
     data () {
@@ -199,6 +200,14 @@ export default {
         formatNumber: number => {
             var number_str = number.toString()
             return number_str.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        },
+        sortPriceProductsDesc() {
+            $('#product__price').html($('#prodDesc').text())
+            return this.products.sort((a,b) => b.price - a.price)
+        },
+        sortPriceProductsInc() {
+            $('#product__price').html($('#prodInc').text())
+            return this.products.sort((a,b) => a.price - b.price)
         }
     },
     async mounted() {

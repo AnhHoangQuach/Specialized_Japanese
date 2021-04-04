@@ -202,11 +202,12 @@ html {
     color: var(--text-color);
     text-decoration: none;
     display: block;
-    padding: 4px 0;
+    padding: 8px 0;
 }
 
 .select-input__link:hover {
     color: var(--primary-color);
+    cursor: pointer;
 }
 
 /* pagination */

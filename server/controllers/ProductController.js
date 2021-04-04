@@ -97,6 +97,19 @@ class ProductController {
             }
         })
     }
+
+    postCart(req, res, next) {
+        const prodId = req.body.productId;
+        Product.findById(prodId).then(product => {
+            User.findById(req.body.userId).then(user => {
+                return user.addToCart(product);
+            })
+        }).then(result => {
+            return res.json({status: 200, message: "Add To Cart Success", result: result})
+        }).catch(err => {
+            return res.json({status: 400, message: err.message})
+        });
+    }
 }
 
 module.exports = new ProductController

@@ -80,11 +80,11 @@
                 </div>
                 </div>
                 <div class="product-pay">
-                <button type="button" class="product-add-cart" aria-disabled="false">
-                    <i class="product-add-cart__icon fas fa-cart-plus"></i>
-                    <span class="product-add-cart-text">Thêm vào giỏ hàng</span>
-                </button>
-                <button type="submit" class="product-buy-now" aria-disabled="false"><router-link :to="{name: 'UserListProduct'}" class="product-buy-now-click">Mua ngay</router-link></button>
+                    <button type="button" @click="addProductToCart(product._id)" class="product-add-cart" aria-disabled="false">
+                        <i class="product-add-cart__icon fas fa-cart-plus"></i>
+                        <span class="product-add-cart-text">Thêm vào giỏ hàng</span>
+                    </button>
+                    <button type="submit" class="product-buy-now" aria-disabled="false"><router-link :to="{name: 'UserListProduct'}" class="product-buy-now-click">Mua ngay</router-link></button>
                 </div>
             </div>
             </div>
@@ -168,6 +168,13 @@
                 </div>
             </div>
         </div>
+
+        <div class="app-animation-cart" v-if="addCart">
+            <div class="animation-cart">
+                <fa-icon :icon="['fas', 'check-circle']" class="animation-cart-icon" />
+                <p class="animation-cart-text">Sản phẩm đã được thêm vào giỏ hàng</p>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -177,6 +184,22 @@ export default {
     data() {
         return {
             product: null,
+            addCart: false
+        }
+    },
+    methods: {
+        async addProductToCart(product) {
+            const response = await ProductsService.addProductToCart({
+                productId: product,
+                userId: this.$store.state.user._id
+            });
+            console.log(response)
+            if (response.data.status == 200) {
+                this.addCart = true
+                setTimeout(function () {
+                    this.addCart = false
+                }.bind(this), 1500);
+            }
         }
     },
     async mounted () {

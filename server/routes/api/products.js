@@ -9,8 +9,12 @@ router.get('/:productId', ProductController.getProduct)
 
 router.get('/users/:userId', ProductController.getProductsByUser)
 
+router.post('/cart', ProductController.postCart)
+
 router.post('/add-product', ProductController.addProduct)
+
 router.post('/edit-product', ProductController.editProduct)
+
 router.delete('/delete-product', ProductController.deleteProduct)
 
 module.exports = router;

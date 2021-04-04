@@ -39,16 +39,16 @@
                 </div>
                 <div class="grid wide" style="padding-bottom: 40px;">
                     <div class="content-table row no-gutters">
-                        <div class="col l-12 m-12 c-12" v-for="product in productsSellByUser" v-bind:key="product._id">
+                        <div class="col l-12 m-12 c-12">
                             <h4 class="information-text">Sản phẩm đã đăng bán</h4>
-                            <router-link :to="{name: 'Product', params: {id: 765765}}" style="text-decoration: none;">
+                            <router-link :to="{name: 'Product', params: {id: product._id}}" style="text-decoration: none;" v-for="product in productsSellByUser" v-bind:key="product._id">
                                 <div class="product-seen-list">
                                     <div class="product-seen">
-                                        <img src="https://cf.shopee.vn/file/089e81de274701dcdd765952c524dde3" alt="balo" class="product-seen-img">
-                                        <p class="product-seen-name">dasdsadasd</p>
+                                        <img v-bind:src="product.imageUrl" alt="" class="product-seen-img">
+                                        <p class="product-seen-name">{{product.name}}</p>
                                         <div class="product-seen-price">
-                                        <p class="product-seen-old">212312321đ</p>
-                                        <p class="product-seen-current">3123213213đ</p>
+                                            <p class="product-seen-old">{{product.price}} đ</p>
+                                            <p class="product-seen-current">{{product.price}} đ</p>
                                         </div>
                                     </div>
                                 </div>
@@ -99,12 +99,16 @@ export default {
             }
             this.reloadForm()
         },
+        deleteProduct(productId) {
+            const response = ProductsService.deleteProduct(productId);
+            console.log(response)
+        }
     },
     async mounted () {
         const userId = this.$store.state.user._id
         const response = await ProductsService.getProductsByUserId(userId)
         this.productsSellByUser = response.data.products
-        console.log(response.data)
+        console.log(response.data.products)
     }
 }
 </script>

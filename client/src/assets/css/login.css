@@ -103,7 +103,7 @@ html {
     cursor: pointer;
 }
 
-.form-submit:hover {
+.form-submit:hover, .form-actions:hover {
     background-color: #1ac7b6;
 }
   

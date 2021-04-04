@@ -189,8 +189,6 @@
     left: 0;
     display: flex;
     animation: fadeIn linear 0.5s;
-    visibility: hidden;
-    opacity: 0;
 }
 
 .opencart {
