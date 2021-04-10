@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import ProductsService from '@/services/ProductsService'
 export default {
     data() {
         return {
@@ -40,7 +41,10 @@ export default {
         }
     },
     async mounted () {
-        const userId = this.$store.state.user._id
+        const user = this.$store.state.user
+        const response = await ProductsService.getCartOrders(user)
+        this.cartOrders = response.data.items
+        console.log(response.data)
     }
 }
 </script>

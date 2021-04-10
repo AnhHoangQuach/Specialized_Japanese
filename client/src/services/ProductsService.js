@@ -18,7 +18,7 @@ export default {
     addProductToCart(product) {
         return Api().post('products/cart', product) 
     },
-    getCart(user) {
-        return Api().post('products/get-cart', user) 
+    getCartOrders(user) {
+        return Api().post('products/get-cart', user)
     }
 }

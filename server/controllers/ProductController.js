@@ -113,10 +113,10 @@ class ProductController {
 
     getCart(req, res, next) {
         const user = req.body.user
-        user.populate('cart.items.productId').execPopulate().then(products => {
-            console.log(products);
+        user.populate('cart.items.productId').execPopulate().then(carts => {
+            return res.json({status: 200, message: "Get Order Cart Success", carts: carts})
         }).catch(err => {
-            console.log(err);
+            return res.json({status: 400, message: err.message})
         })
     }
 }
