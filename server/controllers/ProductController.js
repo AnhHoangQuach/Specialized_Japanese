@@ -110,6 +110,15 @@ class ProductController {
             return res.json({status: 400, message: err.message})
         });
     }
+
+    getCart(req, res, next) {
+        const user = req.body.user
+        user.populate('cart.items.productId').execPopulate().then(products => {
+            console.log(products);
+        }).catch(err => {
+            console.log(err);
+        })
+    }
 }
 
 module.exports = new ProductController

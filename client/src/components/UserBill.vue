@@ -34,7 +34,14 @@
 
 <script>
 export default {
-
+    data() {
+        return {
+            cartOrders: null
+        }
+    },
+    async mounted () {
+        const userId = this.$store.state.user._id
+    }
 }
 </script>
 

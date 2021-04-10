@@ -26,7 +26,8 @@ const userSchema = new Schema({
                     ref: 'Product',
                     required: true
                 },
-                quantity: { type: Number, required: true }
+                quantity: { type: Number, required: true },
+                time : { type : Number, default: Date.now() }
             }
         ]
     }
@@ -42,10 +43,11 @@ userSchema.methods.addToCart = function(product) {
     if (cartProductIndex >= 0) {
         newQuantity = this.cart.items[cartProductIndex].quantity + 1;
         updatedCartItems[cartProductIndex].quantity = newQuantity;
+        updatedCartItems[cartProductIndex].time = Date.now();
     } else {
         updatedCartItems.push({
             productId: product._id,
-            quantity: newQuantity
+            quantity: newQuantity,
         });
     }
     const updatedCart = {
