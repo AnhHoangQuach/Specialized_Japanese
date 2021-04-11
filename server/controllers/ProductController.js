@@ -112,11 +112,24 @@ class ProductController {
     }
 
     getCart(req, res, next) {
-        const user = req.body.user
-        user.populate('cart.items.productId').execPopulate().then(carts => {
-            return res.json({status: 200, message: "Get Order Cart Success", carts: carts})
+        const user = req.body.user;
+        User.findOne({_id: user._id}).populate('cart.items.productId').exec().then(user => {
+            const products = user.cart.items
+            return res.json({status: 200, message: "Get Order Cart Success", products: products})
         }).catch(err => {
             return res.json({status: 400, message: err.message})
+        })
+    }
+
+    postCartDeleteProduct(req, res, next) {
+        const prodId = req.body.productId;
+        const user = req.body.user;
+        User.findOne({_id: user._id}).then(data => {
+            data.removeFromCart(prodId).then(result => {
+                return res.json({status: 200, message: "Delete Product Cart Success", result: result})
+            }).catch(err => {
+                return res.json({status: 400, message: err.message})
+            })
         })
     }
 }
