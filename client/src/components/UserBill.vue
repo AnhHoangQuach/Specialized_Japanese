@@ -10,6 +10,7 @@
                                 <th>Số TT</th>
                                 <th>Ngày mua</th>
                                 <th>Sản phẩm</th>
+                                <th>Số lượng</th>
                                 <th>Tổng tiền</th>
                                 <th>Trạng thái</th>
                                 <th>Hủy đơn</th>
@@ -21,6 +22,7 @@
                                 <td>{{index + 1}}</td>
                                 <td>{{ formatDateTime(cart.time) }}</td>
                                 <td>{{ cart.productId.name }}</td>
+                                <td>{{ cart.quantity }}</td>
                                 <td>{{ formatNumber(cart.productId.price * cart.quantity) }} đ</td>
                                 <td>Đang xử lý</td>
                                 <td id="" class="cancelpay" @click="deleteProductItemCart(cart.productId._id)">Hủy</td>
