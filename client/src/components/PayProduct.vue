@@ -74,7 +74,7 @@
                             <button class="method-pay-value" @click="clickPay">Thanh toán khi nhận hàng</button>
                         </div>
                         <div class="pay-end">
-                            <button class="pay-end-button">Đặt hàng</button>
+                            <button class="pay-end-button" @click="addOrder">Đặt hàng</button>
                         </div>
                     </div>
                 </div>
@@ -100,6 +100,7 @@
 </template>
 
 <script>
+import OrdersService from '@/services/OrdersService'
 export default {
     name: 'PayProduct',
     data () {
@@ -110,6 +111,16 @@ export default {
     methods: {
         clickPay() {
             this.isPay = false
+        },
+        async addOrder() {
+            const response = await OrdersService.createOrder({
+                user: this.$store.state.user,
+            })
+            if (response.data.status == 200) {
+                this.$toastr.s(response.data.message)
+            } else {
+                this.$toastr.e(response.data.message)
+            }
         }
     }
 }
