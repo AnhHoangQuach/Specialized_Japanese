@@ -63,6 +63,7 @@ body {
     list-style: none;
     box-shadow: 0 1px 2px #e0e0e0;
     display: none;
+    z-index: 3;
 }
 
 .header__navbar-user-menu::before {
@@ -545,6 +546,7 @@ body {
     padding: 0 12px;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
+    z-index: 2;
 }
 
 .header__cart-icon {

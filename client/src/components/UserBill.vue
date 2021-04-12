@@ -25,7 +25,7 @@
                                 <td>{{ cart.quantity }}</td>
                                 <td>{{ formatNumber(cart.productId.price * cart.quantity) }} đ</td>
                                 <td>Đang xử lý</td>
-                                <td id="" class="cancelpay" @click="deleteProductItemCart(cart.productId._id)">Hủy</td>
+                                <td id="" class="cancelpay">Hủy</td>
                             </tr>
                             
                         </tbody>
@@ -74,19 +74,6 @@ export default {
             var result = (day + "/" + month + "/" + year + " " + hour + ":" + minutes + ":" + seconds);
             return result;
         },
-        async deleteProductItemCart(productId) {
-            const response = await ProductsService.deleteProductCart({
-                productId: productId,
-                user: this.$store.state.user
-            })
-            if (response.data.status == 200) {
-                this.$toastr.s(response.data.message)
-                this.$router.go(0)               
-            } else {
-                this.$toastr.e(response.data.message)
-            }
-            console.log(response)
-        }
     },
     async mounted () {
         const response = await ProductsService.getCart({

@@ -170,70 +170,37 @@
 						<span class="header__cart-notice">3</span>
 						<!-- No cart: header__cart-list--no-cart-->
 						<div class="header__cart-list">
-							<img src="../assets/img/no_cart.png" alt="" class="header__cart-no-cart-img">
-							<span class="header__cart-list-no-cart-msg">
-								Chưa có sản phẩm
-							</span>
-							<h4 class="header__cart-heading">Sản phẩm đã thêm</h4>
-							<ul class="header__cart-list-item">
-								<li class="header__cart-item">
-									<!-- Cart item -->
-									<img src="https://cf.shopee.vn/file/c1a318e93eed3e60041d72adc398332f_tn" alt="" class="header__cart-img">
-									<div class="header__cart-item-info">
-										<div class="header__cart-item-head">
-											<h5 class="header__cart-item-name">Bộ kem đặc trị vùng mắt</h5>
-											<div class="header__cart-item-price-wrap">
-												<span class="header__cart-item-price">2.000.000đ</span>
-												<span class="header__cart-item-multiply">x</span>
-												<span class="header__cart-item-qnt">2</span>
+							<div class="header__cart-list--no-cart" v-if="!carts">
+								<img src="../assets/img/no_cart.png" alt="" class="header__cart-no-cart-img">
+								<span class="header__cart-list-no-cart-msg">
+									Chưa có sản phẩm
+								</span>
+							</div>
+							<div v-else>
+								<h4 class="header__cart-heading">Sản phẩm đã thêm</h4>
+								<ul class="header__cart-list-item">
+									<li class="header__cart-item" v-for="cart in carts" v-bind:key="cart.productId._id">
+										<!-- Cart item -->
+										<img :src="cart.productId.imageUrl" alt="" class="header__cart-img">
+										<div class="header__cart-item-info">
+											<div class="header__cart-item-head">
+												<h5 class="header__cart-item-name">{{ cart.productId.name }}</h5>
+												<div class="header__cart-item-price-wrap">
+													<span class="header__cart-item-price">{{ cart.productId.price }} đ</span>
+													<span class="header__cart-item-multiply">x</span>
+													<span class="header__cart-item-qnt">{{ cart.quantity }}</span>
+												</div>
+											</div>
+											<div class="header__cart-item-body">
+												<span class="header__cart-item-description">{{ cart.productId.description }}</span>
+												<span class="header__cart-item-remove" @click="deleteProductItemCart(cart.productId._id)">Xóa</span>
 											</div>
 										</div>
-										<div class="header__cart-item-body">
-											<span class="header__cart-item-description">Phân loại bạc</span>
-											<span class="header__cart-item-remove">Xóa</span>
-										</div>
-									</div>
-								</li>
+									</li>
 
-								<li class="header__cart-item">
-									<!-- Cart item -->
-									<img src="https://cf.shopee.vn/file/c1a318e93eed3e60041d72adc398332f_tn" alt="" class="header__cart-img">
-									<div class="header__cart-item-info">
-										<div class="header__cart-item-head">
-											<h5 class="header__cart-item-name">Bộ kem đặc trị vùng mắt</h5>
-											<div class="header__cart-item-price-wrap">
-												<span class="header__cart-item-price">2.000.000đ</span>
-												<span class="header__cart-item-multiply">x</span>
-												<span class="header__cart-item-qnt">2</span>
-											</div>
-										</div>
-										<div class="header__cart-item-body">
-											<span class="header__cart-item-description">Phân loại bạc</span>
-											<span class="header__cart-item-remove">Xóa</span>
-										</div>
-									</div>
-								</li>
-
-								<li class="header__cart-item">
-									<!-- Cart item -->
-									<img src="https://cf.shopee.vn/file/c1a318e93eed3e60041d72adc398332f_tn" alt="" class="header__cart-img">
-									<div class="header__cart-item-info">
-										<div class="header__cart-item-head">
-											<h5 class="header__cart-item-name">Bộ kem đặc trị vùng mắt</h5>
-											<div class="header__cart-item-price-wrap">
-												<span class="header__cart-item-price">2.000.000đ</span>
-												<span class="header__cart-item-multiply">x</span>
-												<span class="header__cart-item-qnt">2</span>
-											</div>
-										</div>
-										<div class="header__cart-item-body">
-											<span class="header__cart-item-description">Phân loại bạc</span>
-											<span class="header__cart-item-remove">Xóa</span>
-										</div>
-									</div>
-								</li>
-							</ul>
-							<a href="#" class="header__cart-view-cart btn btn--primary">Xem giỏ hàng</a>
+								</ul>
+								<a href="#" class="header__cart-view-cart btn btn--primary">Xem giỏ hàng</a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -351,6 +318,7 @@
 </template>
 <script>
 import AuthenticationService from '@/services/AuthenticationService';
+import ProductsService from '@/services/ProductsService';
 // import $ from 'jquery'
 export default {
     name: 'Header',
@@ -361,6 +329,7 @@ export default {
             password_confirm: '',
 			state_register: false,
 			state_login: false,
+			carts: null,
         }
     },
 	methods: {
@@ -415,7 +384,31 @@ export default {
 		logout() {
 			this.$store.dispatch('setToken', null)
 			this.$store.dispatch('setUser', null)
-		}
+		},
+		async getCartItem() {
+			if ( this.$store.state.user ) {
+				const response = await ProductsService.getCart({
+					user: this.$store.state.user
+				})
+				this.carts = response.data.products
+			}
+		},
+		async deleteProductItemCart(productId) {
+            const response = await ProductsService.deleteProductCart({
+                productId: productId,
+                user: this.$store.state.user
+            })
+            if (response.data.status == 200) {
+                this.$toastr.s(response.data.message)
+                this.$router.go(0)               
+            } else {
+                this.$toastr.e(response.data.message)
+            }
+            console.log(response)
+        }
+	},
+	beforeUpdate() {
+		this.getCartItem();
 	}
 }
 </script>
