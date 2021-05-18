@@ -16,36 +16,7 @@
                                 <th>Hủy đơn</th>
                             </tr>
                         </thead>
-                        <tbody>
-<<<<<<< HEAD
-                            <!-- <tr v-for="(cart, index) in carts" v-bind:key="index">
-                                <td>{{index + 1}}</td>
-=======
-                            <tr
-                                v-for="(cart, index) in carts"
-                                v-bind:key="index"
-                            >
-                                <td>{{ index + 1 }}</td>
->>>>>>> aff66a6e27e94ce4ededcc81c6ef165bbfb2e118
-                                <td>{{ formatDateTime(cart.time) }}</td>
-                                <td>{{ cart.productId.name }}</td>
-                                <td>{{ cart.quantity }}</td>
-                                <td>
-                                    {{
-                                        formatNumber(
-                                            cart.productId.price * cart.quantity
-                                        )
-                                    }}
-                                    đ
-                                </td>
-                                <td>Đang xử lý</td>
-                                <td id="" class="cancelpay">Hủy</td>
-<<<<<<< HEAD
-                            </tr> -->
-=======
-                            </tr>
->>>>>>> aff66a6e27e94ce4ededcc81c6ef165bbfb2e118
-                        </tbody>
+                        <tbody></tbody>
                     </table>
                 </div>
             </div>
@@ -54,15 +25,7 @@
 </template>
 
 <script>
-<<<<<<< HEAD
 // import ProductsService from "@/services/ProductsService"
-export default {
-    data() {
-        return {}
-    },
-    methods: {
-=======
-import ProductsService from "@/services/ProductsService"
 export default {
     data() {
         return {
@@ -74,7 +37,6 @@ export default {
             var number_str = number.toString()
             return number_str.replace(/\B(?=(\d{3})+(?!\d))/g, ".")
         },
->>>>>>> aff66a6e27e94ce4ededcc81c6ef165bbfb2e118
         checkZero: data => {
             if (data.length == 1) {
                 data = "0" + data
@@ -112,15 +74,6 @@ export default {
             return result
         },
     },
-<<<<<<< HEAD
-=======
-    async mounted() {
-        const response = await ProductsService.getCart({
-            user: this.$store.state.user,
-        })
-        this.carts = response.data.products
-    },
->>>>>>> aff66a6e27e94ce4ededcc81c6ef165bbfb2e118
 }
 </script>
 

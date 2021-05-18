@@ -24,10 +24,7 @@ export default {
     deleteProductCart(data) {
         return Api().post("products/cart-delete-item", data)
     },
-<<<<<<< HEAD
     addMultiProduct(data) {
         return Api().post("products/add-multi-product", data)
     },
-=======
->>>>>>> aff66a6e27e94ce4ededcc81c6ef165bbfb2e118
 }
