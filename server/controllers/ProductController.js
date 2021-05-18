@@ -184,9 +184,11 @@ class ProductController {
     addMultiProduct(req, res, next) {
         const quantity = req.body.quantity
         const product = req.body.product
+        console.log(product)
         User.findById(req.body.userId).then((user) => {
             user.cart.items.forEach((item, index) => {
-                if (item.productId._id == product) {
+                console.log(item)
+                if (item.productId == product.productId._id) {
                     item.quantity = quantity
                 }
             })
