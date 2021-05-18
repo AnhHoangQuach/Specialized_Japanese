@@ -24,9 +24,12 @@ export default new Vuex.Store({
         setUser(state, user) {
             state.user = user
         },
+<<<<<<< HEAD
         setCart(state, cart) {
             state.cart = cart
         },
+=======
+>>>>>>> aff66a6e27e94ce4ededcc81c6ef165bbfb2e118
     },
     actions: {
         setToken({ commit }, token) {
@@ -34,9 +37,12 @@ export default new Vuex.Store({
         },
         setUser({ commit }, user) {
             commit("setUser", user)
+<<<<<<< HEAD
         },
         setCart({ commit }, cart) {
             commit("setCart", cart)
+=======
+>>>>>>> aff66a6e27e94ce4ededcc81c6ef165bbfb2e118
         },
     },
     plugins: [
