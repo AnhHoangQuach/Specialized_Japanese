@@ -64,14 +64,15 @@
                                                         >-</span
                                                     >
                                                     <input
+                                                        :id="item.productId._id"
                                                         :value="item.quantity"
                                                         class="cart-product-input"
                                                     />
                                                     <span
+                                                        class="cart-product-more"
                                                         @click="
                                                             addMoreProduct(item)
                                                         "
-                                                        class="cart-product-more"
                                                         >+</span
                                                     >
                                                 </div>
@@ -136,6 +137,7 @@
 
 <script>
 import ProductsService from "@/services/ProductsService"
+import $ from "jquery"
 export default {
     data() {
         return {
@@ -144,12 +146,15 @@ export default {
     },
     methods: {
         async addMoreProduct(product) {
+            var elementCount = $(`#${product.productId._id}`).val()
+            var elementCountInc = parseInt(elementCount) + 1
             const response = await ProductsService.addMultiProduct({
                 product: product,
-                quantity: 2,
+                quantity: elementCountInc,
                 userId: this.$store.state.user._id,
             })
             console.log(response)
+            $(`#${product.productId._id}`).val(elementCountInc)
         },
         formatNumber: number => {
             var number_str = number.toString()

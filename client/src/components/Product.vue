@@ -155,12 +155,12 @@
                             type="submit"
                             class="product-buy-now"
                             aria-disabled="false"
+                            @click="addProductAndLink(product._id)"
                         >
-                            <router-link
-                                :to="{ name: 'UserListProduct' }"
-                                @click.native="addProductToCart(product._id)"
+                            <a
+                                href="javascript:void(0)"
                                 class="product-buy-now-click"
-                                >Mua ngay</router-link
+                                >Mua ngay</a
                             >
                         </button>
                     </div>
@@ -315,6 +315,20 @@ export default {
                         this.addCart = false
                     }.bind(this),
                     1500
+                )
+            }
+        },
+        async addProductAndLink(product) {
+            const response = await ProductsService.addProductToCart({
+                productId: product,
+                userId: this.$store.state.user._id,
+            })
+            if (response.data.status == 200) {
+                setTimeout(
+                    function() {
+                        this.$router.push({ name: "UserListProduct" })
+                    }.bind(this),
+                    500
                 )
             }
         },
