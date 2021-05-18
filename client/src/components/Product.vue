@@ -158,6 +158,7 @@
                         >
                             <router-link
                                 :to="{ name: 'UserListProduct' }"
+                                @click.native="addProductToCart(product._id)"
                                 class="product-buy-now-click"
                                 >Mua ngay</router-link
                             >

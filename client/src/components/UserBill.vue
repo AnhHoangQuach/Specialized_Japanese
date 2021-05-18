@@ -1,6 +1,6 @@
 <template>
     <div class="grid wide">
-        <div class="col l-10 m-12 c-12">    
+        <div class="col l-10 m-12 c-12">
             <div class="user-order">
                 <div class="user-order-title">Đơn hàng của tôi</div>
                 <div class="user-order-content">
@@ -17,8 +17,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            
-                            <tr v-for="(cart, index) in carts" v-bind:key="index">
+                            <!-- <tr v-for="(cart, index) in carts" v-bind:key="index">
                                 <td>{{index + 1}}</td>
                                 <td>{{ formatDateTime(cart.time) }}</td>
                                 <td>{{ cart.productId.name }}</td>
@@ -26,8 +25,7 @@
                                 <td>{{ formatNumber(cart.productId.price * cart.quantity) }} đ</td>
                                 <td>Đang xử lý</td>
                                 <td id="" class="cancelpay">Hủy</td>
-                            </tr>
-                            
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>
@@ -37,53 +35,50 @@
 </template>
 
 <script>
-import ProductsService from '@/services/ProductsService'
+// import ProductsService from "@/services/ProductsService"
 export default {
     data() {
-        return {
-            carts: null
-        }
+        return {}
     },
     methods: {
-        formatNumber: number => {
-            var number_str = number.toString()
-            return number_str.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-        },
         checkZero: data => {
             if (data.length == 1) {
-                data = "0" + data;
+                data = "0" + data
             }
-            return data;
+            return data
         },
         formatDateTime: time => {
-            var today = new Date(time);
-            var day = today.getDate() + "";
-            var month = (today.getMonth() + 1) + "";
-            var year = today.getFullYear() + "";
-            var hour = today.getHours() + "";
-            var minutes = today.getMinutes() + "";
-            var seconds = today.getSeconds() + "";
+            var today = new Date(time)
+            var day = today.getDate() + ""
+            var month = today.getMonth() + 1 + ""
+            var year = today.getFullYear() + ""
+            var hour = today.getHours() + ""
+            var minutes = today.getMinutes() + ""
+            var seconds = today.getSeconds() + ""
 
-            day = day.length == 1 ? day = "0" + day : day
-            month = month.length == 1 ? month = "0" + month : month
-            year = year.length == 1 ? year = "0" + year : year
-            hour = hour.length == 1 ? hour = "0" + hour : hour
-            minutes = minutes.length == 1 ? minutes = "0" + minutes : minutes
-            seconds = seconds.length == 1 ? seconds = "0" + seconds : seconds
+            day = day.length == 1 ? (day = "0" + day) : day
+            month = month.length == 1 ? (month = "0" + month) : month
+            year = year.length == 1 ? (year = "0" + year) : year
+            hour = hour.length == 1 ? (hour = "0" + hour) : hour
+            minutes = minutes.length == 1 ? (minutes = "0" + minutes) : minutes
+            seconds = seconds.length == 1 ? (seconds = "0" + seconds) : seconds
 
-            var result = (day + "/" + month + "/" + year + " " + hour + ":" + minutes + ":" + seconds);
-            return result;
+            var result =
+                day +
+                "/" +
+                month +
+                "/" +
+                year +
+                " " +
+                hour +
+                ":" +
+                minutes +
+                ":" +
+                seconds
+            return result
         },
     },
-    async mounted () {
-        const response = await ProductsService.getCart({
-            user: this.$store.state.user
-        })
-        this.carts = response.data.products
-    }
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

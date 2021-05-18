@@ -6,56 +6,74 @@
                     <div class="cart">
                         <h2 class="cart-product-title">Giỏ Hàng của bạn</h2>
                         <div class="cart-list">
-                            <ul class="cart-product-list">                                
-                                <li class="cart-product">
-                                    <img src="https://cf.shopee.vn/file/089e81de274701dcdd765952c524dde3" alt="" class="cart-product-img">
+                            <ul class="cart-product-list">
+                                <li
+                                    class="cart-product"
+                                    v-for="item in carts"
+                                    v-bind:key="item.productId._id"
+                                >
+                                    <img
+                                        :src="item.productId.imageUrl"
+                                        alt=""
+                                        class="cart-product-img"
+                                    />
                                     <div class="cart-product-content">
                                         <div class="cart-product-description">
-                                            <a href="" class="cart-product-name">dadsadsadsad</a>
-                                            <span class="cart-product-seller">Cung cấp bởi: dasdadasds</span>
+                                            <a
+                                                href=""
+                                                class="cart-product-name"
+                                                >{{
+                                                    item.productId.description
+                                                }}</a
+                                            >
+                                            <span class="cart-product-seller"
+                                                >Cung cấp bởi:
+                                                {{ item.productId.place }}</span
+                                            >
                                             <p class="cart-product-action">
-                                                <span class="cart-product-remove"><a href="https://cf.shopee.vn/file/089e81de274701dcdd765952c524dde3">Xóa</a></span>
-                                                <span class="cart-product-buy-later">Dành để mua sau</span>
+                                                <span
+                                                    class="cart-product-remove"
+                                                    ><a href="#">Xóa</a></span
+                                                >
+                                                <span
+                                                    class="cart-product-buy-later"
+                                                    >Dành để mua sau</span
+                                                >
                                             </p>
                                         </div>
                                         <div class="cart-product-detail">
                                             <div class="cart-product-price">
-                                                <p class="cart-product-current">12355đ</p>
-                                                <p class="cart-product-old">51651116đ</p>
-                                                <p class="cart-product-price-pay"></p>
+                                                <p class="cart-product-current">
+                                                    {{
+                                                        formatNumber(
+                                                            item.productId.price
+                                                        )
+                                                    }}đ
+                                                </p>
+                                                <p class="cart-product-old">
+                                                    51651116đ
+                                                </p>
+                                                <p
+                                                    class="cart-product-price-pay"
+                                                ></p>
                                             </div>
                                             <div class="cart-product-more-less">
                                                 <div class="cart-product-key">
-                                                    <span class="cart-product-less">-</span>
-                                                    <input type="tel" value="1" class="cart-product-input">
-                                                    <span class="cart-product-more">+</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="cart-product">
-                                    <img src="https://cf.shopee.vn/file/089e81de274701dcdd765952c524dde3" alt="" class="cart-product-img">
-                                    <div class="cart-product-content">
-                                        <div class="cart-product-description">
-                                            <a href="" class="cart-product-name">dadsadsadsad</a>
-                                            <span class="cart-product-seller">Cung cấp bởi: dasdadasds</span>
-                                            <p class="cart-product-action">
-                                                <span class="cart-product-remove"><a href="https://cf.shopee.vn/file/089e81de274701dcdd765952c524dde3">Xóa</a></span>
-                                                <span class="cart-product-buy-later">Dành để mua sau</span>
-                                            </p>
-                                        </div>
-                                        <div class="cart-product-detail">
-                                            <div class="cart-product-price">
-                                                <p class="cart-product-current">12355đ</p>
-                                                <p class="cart-product-old">51651116đ</p>
-                                                <p class="cart-product-price-pay"></p>
-                                            </div>
-                                            <div class="cart-product-more-less">
-                                                <div class="cart-product-key">
-                                                    <span class="cart-product-less">-</span>
-                                                    <input type="tel" value="1" class="cart-product-input">
-                                                    <span class="cart-product-more">+</span>
+                                                    <span
+                                                        class="cart-product-less"
+                                                        >-</span
+                                                    >
+                                                    <input
+                                                        :value="item.quantity"
+                                                        class="cart-product-input"
+                                                    />
+                                                    <span
+                                                        @click="
+                                                            addMoreProduct(item)
+                                                        "
+                                                        class="cart-product-more"
+                                                        >+</span
+                                                    >
                                                 </div>
                                             </div>
                                         </div>
@@ -72,25 +90,40 @@
                                 <ul class="prices__items">
                                     <li class="prices__item">
                                         <span class="price-text">Tạm tính</span>
-                                        <span class="price-value">456.000đ</span>
+                                        <span class="price-value"
+                                            >456.000đ</span
+                                        >
                                     </li>
                                 </ul>
                                 <p class="price-total">
                                     <span class="price-text">Thành tiền</span>
-                                    <span class="price-value prices__value--final">
+                                    <span
+                                        class="price-value prices__value--final"
+                                    >
                                         456.000đ
                                         <i>(Đã bao gồm phí VAT)</i>
                                     </span>
                                 </p>
                             </div>
-                            <router-link :to="{name: 'PayProduct'}" class="cart__submit">
+                            <router-link
+                                :to="{ name: 'PayProduct' }"
+                                class="cart__submit"
+                            >
                                 Tiến hành đặt hàng
                             </router-link>
                             <div class="cart-coupon">
-                                <p class="coupon-title">Mã giảm giá / Quà tặng</p>
+                                <p class="coupon-title">
+                                    Mã giảm giá / Quà tặng
+                                </p>
                                 <div class="coupon-inner">
-                                    <input type="text" class="coupon-input" placeholder="nhập ở đây...">
-                                    <button class="coupon-button">Đồng ý</button>
+                                    <input
+                                        type="text"
+                                        class="coupon-input"
+                                        placeholder="nhập ở đây..."
+                                    />
+                                    <button class="coupon-button">
+                                        Đồng ý
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -102,11 +135,36 @@
 </template>
 
 <script>
+import ProductsService from "@/services/ProductsService"
 export default {
-
+    data() {
+        return {
+            carts: null,
+        }
+    },
+    methods: {
+        async addMoreProduct(product) {
+            const response = await ProductsService.addMultiProduct({
+                product: product,
+                quantity: 2,
+                userId: this.$store.state.user._id,
+            })
+            console.log(response)
+        },
+        formatNumber: number => {
+            var number_str = number.toString()
+            return number_str.replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+        },
+    },
+    async mounted() {
+        const response = await ProductsService.getCart({
+            user: this.$store.state.user,
+        })
+        this.carts = response.data.products
+    },
 }
 </script>
 
 <style scoped>
-    @import "../assets/css/pay.css";
+@import "../assets/css/pay.css";
 </style>

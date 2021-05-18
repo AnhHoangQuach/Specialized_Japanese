@@ -1,7 +1,7 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import createPersistedState from 'vuex-persistedstate'
-import * as Cookies from 'js-cookie'
+import Vue from "vue"
+import Vuex from "vuex"
+import createPersistedState from "vuex-persistedstate"
+import * as Cookies from "js-cookie"
 
 Vue.use(Vuex)
 
@@ -10,6 +10,7 @@ export default new Vuex.Store({
         user: null,
         token: null,
         isUserLoggedIn: false,
+        cart: null,
     },
     mutations: {
         setToken(state, token) {
@@ -22,22 +23,28 @@ export default new Vuex.Store({
         },
         setUser(state, user) {
             state.user = user
-        }
+        },
+        setCart(state, cart) {
+            state.cart = cart
+        },
     },
     actions: {
-        setToken ({commit}, token) {
-            commit('setToken', token)
+        setToken({ commit }, token) {
+            commit("setToken", token)
         },
-        setUser ({commit}, user) {
-            commit('setUser', user)
-        }
+        setUser({ commit }, user) {
+            commit("setUser", user)
+        },
+        setCart({ commit }, cart) {
+            commit("setCart", cart)
+        },
     },
     plugins: [
         createPersistedState({
-            getState: (key) => Cookies.getJSON(key),
+            getState: key => Cookies.getJSON(key),
             setState: (key, state) => {
                 Cookies.set(key, state, { expires: 3, secure: true })
-            }
-        })
-    ]
+            },
+        }),
+    ],
 })
