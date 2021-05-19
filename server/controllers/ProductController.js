@@ -184,29 +184,33 @@ class ProductController {
     addMultiProduct(req, res, next) {
         const quantity = req.body.quantity
         const product = req.body.product
-        console.log(product)
-        User.findById(req.body.userId).then((user) => {
-            user.cart.items.forEach((item, index) => {
-                console.log(item)
-                if (item.productId == product.productId._id) {
-                    item.quantity = quantity
-                }
-            })
-            user.save((err, result) => {
-                if (err) {
-                    return res.json({
-                        message: err.message,
-                        status: 404,
-                        email: result.email,
+        User.findById(req.body.userId)
+            .populate("cart.items.productId")
+            .exec()
+            .then((user) => {
+                user.cart.items.forEach((item, index) => {
+                    if (
+                        item.productId._id.toString() ==
+                        product.productId._id.toString()
+                    ) {
+                        item.quantity = quantity
+                    }
+                })
+                user.save((err, result) => {
+                    if (err) {
+                        return res.json({
+                            message: err.message,
+                            status: 404,
+                            email: result.email,
+                        })
+                    }
+                    res.json({
+                        message: "Save success",
+                        status: 200,
+                        products: user.cart.items,
                     })
-                }
-                res.json({
-                    message: "Save success",
-                    status: 200,
-                    user: user,
                 })
             })
-        })
     }
 }
 

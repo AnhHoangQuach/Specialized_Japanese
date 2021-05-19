@@ -60,6 +60,9 @@
                                             <div class="cart-product-more-less">
                                                 <div class="cart-product-key">
                                                     <span
+                                                        @click="
+                                                            descProduct(item)
+                                                        "
                                                         class="cart-product-less"
                                                         >-</span
                                                     >
@@ -67,6 +70,7 @@
                                                         :id="item.productId._id"
                                                         :value="item.quantity"
                                                         class="cart-product-input"
+                                                        readonly
                                                     />
                                                     <span
                                                         class="cart-product-more"
@@ -91,9 +95,10 @@
                                 <ul class="prices__items">
                                     <li class="prices__item">
                                         <span class="price-text">Tạm tính</span>
-                                        <span class="price-value"
-                                            >456.000đ</span
-                                        >
+                                        <span
+                                            class="price-value"
+                                            id="totalAmount"
+                                        ></span>
                                     </li>
                                 </ul>
                                 <p class="price-total">
@@ -142,8 +147,10 @@ export default {
     data() {
         return {
             carts: null,
+            sum: 0,
         }
     },
+    computed: {},
     methods: {
         async addMoreProduct(product) {
             var elementCount = $(`#${product.productId._id}`).val()
@@ -155,10 +162,31 @@ export default {
             })
             console.log(response)
             $(`#${product.productId._id}`).val(elementCountInc)
+            this.checkSum(response.data.products)
+        },
+        async descProduct(product) {
+            var elementCount = $(`#${product.productId._id}`).val()
+            var elementCountDesc = parseInt(elementCount) - 1
+            const response = await ProductsService.addMultiProduct({
+                product: product,
+                quantity: elementCountDesc,
+                userId: this.$store.state.user._id,
+            })
+            console.log(response)
+            $(`#${product.productId._id}`).val(elementCountDesc)
+            this.checkSum(response.data.products)
         },
         formatNumber: number => {
             var number_str = number.toString()
             return number_str.replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+        },
+        checkSum(carts) {
+            var tempSumProduct = 0
+            carts.forEach(item => {
+                tempSumProduct += item.quantity * item.productId.price
+            })
+            this.sum = tempSumProduct
+            $("#totalAmount").html(this.sum)
         },
     },
     async mounted() {
@@ -166,6 +194,7 @@ export default {
             user: this.$store.state.user,
         })
         this.carts = response.data.products
+        this.checkSum(this.carts)
     },
 }
 </script>
